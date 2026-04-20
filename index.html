@@ -1,0 +1,1514 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adnota — Annotate the Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/json" id="__tweaks__">
+{
+  "accentColor": "#7c3aed",
+  "heroTag": "Annotate the web.",
+  "ctaLabel": "Get Early Access",
+  "showFeatureBase": true
+}
+</script>
+
+<style>
+:root {
+  --bg: #08080f;
+  --surface: #0f0f1a;
+  --surface2: #16162a;
+  --border: rgba(124,58,237,0.18);
+  --accent: #7c3aed;
+  --accent-glow: rgba(124,58,237,0.35);
+  --accent-soft: rgba(124,58,237,0.12);
+  --red: #e74c3c; --red-soft: rgba(231,76,60,0.12);
+  --amber: #f59e0b; --amber-soft: rgba(245,158,11,0.12);
+  --blue: #3b82f6; --blue-soft: rgba(59,130,246,0.12);
+  --green: #22c55e; --green-soft: rgba(34,197,94,0.12);
+  --pink: #ec4899; --pink-soft: rgba(236,72,153,0.12);
+  --text: oklch(0.96 0.01 290);
+  --text-muted: oklch(0.65 0.02 290);
+  --text-dim: oklch(0.45 0.02 290);
+  --font-display: 'Lato', sans-serif;
+  --font-body: 'Lato', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --r: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 60px;
+  background: rgba(8,8,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent), oklch(0.55 0.25 315));
+  border-radius: 9px;
+  display: grid; place-items: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 20px var(--accent-glow);
+  letter-spacing: -0.5px;
+  position: relative;
+  overflow: visible;
+}
+
+.nav-logo span {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 17px;
+  color: var(--text);
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--accent);
+  color: white !important;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px !important;
+  transition: background 0.2s, box-shadow 0.2s !important;
+}
+.nav-cta:hover {
+  background: oklch(0.58 0.22 290) !important;
+  box-shadow: 0 0 20px var(--accent-glow) !important;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+
+.hero-mesh {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124,58,237,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(236,72,153,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 25% at 80% 60%, rgba(59,130,246,0.07) 0%, transparent 60%);
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 14px 5px 8px;
+  font-size: 12px; font-weight: 500;
+  color: oklch(0.8 0.12 290);
+  font-family: var(--font-mono);
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.85)} }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 112px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  background: linear-gradient(160deg, var(--text) 30%, oklch(0.75 0.15 290) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.65;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex; gap: 12px; justify-content: center; align-items: center;
+  margin-bottom: 72px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 0 30px rgba(124,58,237,0.4);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: oklch(0.58 0.22 290); box-shadow: 0 0 40px rgba(124,58,237,0.6); transform: translateY(-1px); }
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-muted);
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { color: var(--text); border-color: rgba(124,58,237,0.4); background: var(--surface2); }
+
+/* ── BROWSER MOCKUP ── */
+.browser-wrap {
+  width: min(900px, 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,58,237,0.15);
+  position: relative;
+  background: #fff;
+}
+
+.browser-chrome {
+  background: #1e1e24;
+  height: 38px;
+  display: flex; align-items: center;
+  padding: 0 14px; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.b-dot { width: 10px; height: 10px; border-radius: 50%; }
+.b-red { background: #ff5f57; }
+.b-amber { background: #febc2e; }
+.b-green { background: #28c840; }
+.browser-bar {
+  flex: 1; margin: 0 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  height: 22px;
+  display: flex; align-items: center;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+.ext-chip {
+  width: 20px; height: 20px; border-radius: 5px;
+  background: linear-gradient(135deg, var(--accent), oklch(0.55 0.25 315));
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 10px;
+  color: white;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.browser-body {
+  background: #f4f4f5;
+  min-height: 360px;
+  position: relative;
+  overflow: hidden;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  color: #1a1a1a;
+  padding: 28px 36px;
+}
+
+/* Fake article content */
+.fake-article { max-width: 580px; position: relative; }
+.fake-site-header {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 18px; font-weight: 900;
+  color: #111;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  display: flex; align-items: center; gap: 12px;
+}
+.fake-site-tag { color: #e74c3c; font-size: 12px; }
+.fake-h1 { font-size: 20px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 10px; }
+.fake-byline { font-size: 11px; color: #888; margin-bottom: 14px; font-family: Arial, sans-serif; }
+.fake-p { font-size: 13px; line-height: 1.7; color: #333; margin-bottom: 10px; }
+
+/* Adnota overlays on fake article */
+.anno-highlight {
+  background: rgba(236,72,153,0.35);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+.anno-erase-target {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 200px;
+  background: #e8e8ec;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Arial, sans-serif; font-size: 11px; color: #999;
+  text-align: center; padding: 16px;
+  transition: opacity 0.4s;
+}
+.anno-erase-target.erased {
+  opacity: 0;
+}
+.anno-erase-hover {
+  outline: 2px solid #e74c3c;
+  background: rgba(231,76,60,0.05) !important;
+}
+
+.anno-sticky {
+  position: absolute;
+  top: 20px; right: 16px;
+  width: 150px;
+  background: #fef08a;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: Arial, sans-serif;
+  font-size: 11px; color: #555;
+  box-shadow: 2px 4px 14px rgba(0,0,0,0.2);
+  line-height: 1.5;
+  transform: rotate(1.5deg);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.anno-sticky.visible { opacity: 1; transform: rotate(1.5deg) translateY(0); }
+.sticky-header { font-size: 9px; color: #aaa; margin-bottom: 4px; }
+
+.anno-rect {
+  position: absolute;
+  border: 2px solid var(--pink);
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.anno-rect.visible { opacity: 1; }
+
+/* Adnota toolbar */
+.adnota-toolbar {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15,15,20,0.94);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.tb-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.1); }
+
+.tb-chip {
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  border-radius: 5px;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 10px;
+  color: white;
+}
+
+.tb-btn {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: rgba(255,255,255,0.5);
+}
+.tb-btn:hover, .tb-btn.active { background: rgba(255,255,255,0.1); color: white; }
+.tb-btn.active-pen { color: #a78bfa; background: rgba(124,58,237,0.2); }
+
+.tb-swatch {
+  width: 14px; height: 14px; border-radius: 50%;
+  cursor: pointer; transition: transform 0.15s;
+}
+.tb-swatch:hover { transform: scale(1.2); }
+.swatch-active { outline: 2px solid white; outline-offset: 2px; }
+
+.tb-dot-size {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+/* Radial menu */
+.radial-menu {
+  position: absolute;
+  bottom: 18px; left: 18px;
+  z-index: 10;
+}
+
+.radial-center {
+  width: 34px; height: 34px;
+  background: rgba(20,20,30,0.92);
+  border: 1.5px solid rgba(124,58,237,0.6);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 14px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(124,58,237,0.4);
+  position: relative; z-index: 2;
+}
+
+.radial-sat {
+  position: absolute;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(20,20,30,0.92);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  display: grid; place-items: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.radial-sat svg { width: 13px; height: 13px; }
+
+.radial-menu.open .radial-sat {
+  opacity: 1;
+  transform: scale(1) translate(var(--tx), var(--ty));
+}
+
+/* ── SECTIONS ── */
+section { padding: 100px 48px; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+  display: block;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--text) 20%, oklch(0.72 0.18 290));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── PILLARS ── */
+.pillars {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pillars-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.pillar {
+  padding: 56px 40px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.pillar:last-child { border-right: none; }
+.pillar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--p-color), transparent);
+}
+
+.pillar-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--p-bg);
+  border: 1px solid var(--p-border);
+  display: grid; place-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.pillar p { color: var(--text-muted); font-size: 14px; line-height: 1.7; font-weight: 300; }
+
+/* ── FEATURES ── */
+.features-section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.features-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.features-desc { color: var(--text-muted); font-size: 16px; line-height: 1.75; font-weight: 300; }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: default;
+}
+.feature-card:hover {
+  border-color: var(--f-color);
+  transform: translateY(-3px);
+}
+.feature-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, var(--f-color), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feature-card:hover::after { opacity: 1; }
+
+.feature-card-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+
+.feature-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--f-bg);
+  border: 1px solid var(--f-border);
+  display: grid; place-items: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  color: var(--text);
+}
+
+.feature-card p { color: var(--text-muted); font-size: 14px; line-height: 1.7; font-weight: 300; }
+
+.feature-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 16px;
+  background: var(--f-bg);
+  border: 1px solid var(--f-border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--f-color);
+}
+
+.feature-visual {
+  margin-top: 20px;
+  height: 80px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+
+/* ── DEMO VISUALS (CSS art for feature cards) ── */
+.vis-eraser {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #0f0f1a, #1a1025);
+  display: flex; align-items: center; padding: 12px 16px; gap: 12px;
+  position: relative;
+}
+.vis-eraser-text { font-size: 9px; color: rgba(255,255,255,0.25); line-height: 1.8; flex: 1; }
+.vis-eraser-outline {
+  position: absolute; right: 20px; top: 12px;
+  width: 80px; height: 55px;
+  border: 1.5px solid #e74c3c;
+  border-radius: 4px;
+  background: rgba(231,76,60,0.06);
+  display: flex; align-items: flex-end; justify-content: flex-end;
+  padding: 3px;
+}
+.vis-eraser-badge { font-family: var(--font-mono); font-size: 7px; color: #e74c3c; opacity: 0.8; }
+.vis-eraser-hud {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  background: rgba(15,15,20,0.92);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-mono); font-size: 7px;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+  display: flex; gap: 6px; align-items: center;
+}
+.vis-eraser-conf { color: #e74c3c; }
+
+.vis-sticky {
+  width: 100%; height: 100%;
+  background: #f0f0f2;
+  position: relative;
+}
+.vis-sticky-text { position: absolute; top: 10px; left: 12px; font-size: 8px; color: #555; line-height: 1.8; }
+.vis-note {
+  position: absolute; top: 6px; right: 10px;
+  width: 56px; height: 52px;
+  border-radius: 3px;
+  padding: 5px 6px;
+  font-size: 7px; line-height: 1.4;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.15);
+  transform: rotate(2deg);
+}
+.vis-note.yellow { background: #fef08a; color: #555; }
+.vis-note.green { background: #bbf7d0; color: #374151; }
+
+.vis-highlight {
+  width: 100%; height: 100%;
+  background: #f8f8fa;
+  padding: 10px 14px;
+  font-size: 9px; color: #333; line-height: 1.8;
+  position: relative;
+}
+mark.pink { background: rgba(236,72,153,0.3); color: inherit; padding: 1px 0; }
+mark.yellow { background: rgba(250,204,21,0.4); color: inherit; padding: 1px 0; }
+.vis-arrow {
+  position: absolute; right: 12px; top: 16px;
+  opacity: 0.7;
+}
+
+.vis-resizer {
+  width: 100%; height: 100%;
+  background: #f0f0f2;
+  padding: 8px 10px;
+  position: relative;
+}
+.vis-resize-box {
+  width: 80px; height: 60px;
+  border: 1.5px dashed #3b82f6;
+  border-radius: 4px;
+  background: rgba(59,130,246,0.05);
+  position: relative;
+}
+.resize-handle {
+  position: absolute;
+  width: 8px; height: 8px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
+.resize-handle.br { bottom: -4px; right: -4px; cursor: nwse-resize; }
+.resize-handle.r { top: 50%; right: -4px; transform: translateY(-50%); }
+.resize-handle.b { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.vis-resize-badge {
+  position: absolute; top: -1px; right: -1px;
+  font-family: var(--font-mono); font-size: 7px;
+  background: #3b82f6; color: white;
+  border-radius: 3px; padding: 1px 5px;
+}
+
+/* ── HOW IT WORKS ── */
+.how-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.how-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+
+.how-header { text-align: center; margin-bottom: 64px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 24px; left: calc(16% + 20px); right: calc(16% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), var(--border));
+  border-top: 1px dashed rgba(124,58,237,0.3);
+}
+
+.step {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.step-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 18px;
+  color: var(--accent);
+  margin: 0 auto 20px;
+  position: relative; z-index: 1;
+}
+
+.step h3 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.step p { color: var(--text-muted); font-size: 14px; line-height: 1.7; font-weight: 300; }
+
+/* ── PRIVACY STRIP ── */
+.privacy-strip {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.priv-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.priv-icon { font-size: 24px; margin-bottom: 12px; }
+.priv-card h4 { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.priv-card p { color: var(--text-dim); font-size: 13px; line-height: 1.6; font-weight: 300; }
+
+/* ── FEATURE REQUEST ── */
+.featureboard-section {
+  max-width: 900px; margin: 0 auto;
+  text-align: center;
+}
+
+.featureboard-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+
+.featureboard-header {
+  background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(147,51,234,0.1));
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex; align-items: center; gap: 16px;
+}
+
+.fb-icon {
+  width: 40px; height: 40px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: grid; place-items: center;
+  font-size: 18px;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.featureboard-header h3 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+}
+.featureboard-header p { color: var(--text-muted); font-size: 13px; }
+
+.featureboard-body {
+  padding: 32px;
+}
+
+.fb-embed-placeholder {
+  background: var(--surface2);
+  border: 1px dashed rgba(124,58,237,0.3);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+}
+
+.fb-embed-placeholder p {
+  color: var(--text-muted); font-size: 14px; margin-bottom: 20px;
+}
+
+.feature-requests-list {
+  display: grid; gap: 10px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.fr-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.fr-item:hover { border-color: rgba(124,58,237,0.4); background: var(--surface2); }
+
+.fr-votes {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 36px;
+}
+.fr-arrow { color: var(--text-dim); font-size: 12px; }
+.fr-count { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--accent); }
+
+.fr-content h4 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.fr-content p { font-size: 12px; color: var(--text-dim); }
+
+.fr-tag {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px; font-family: var(--font-mono);
+  border: 1px solid;
+  flex-shrink: 0;
+}
+.fr-tag.planned { border-color: var(--amber); color: var(--amber); background: var(--amber-soft); }
+.fr-tag.idea { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+.fr-tag.wip { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+
+.fb-cta {
+  background: var(--accent);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+.fb-cta:hover { background: oklch(0.58 0.22 290); box-shadow: 0 0 36px var(--accent-glow); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.footer-tagline { font-size: 13px; color: var(--text-dim); margin-top: 6px; }
+
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-muted); }
+
+.footer-note { font-size: 12px; color: var(--text-dim); text-align: right; line-height: 1.7; }
+
+/* ── SCROLL REVEALS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── TWEAKS PANEL ── */
+#tweaks-panel {
+  display: none;
+  position: fixed; bottom: 24px; right: 24px; z-index: 10000;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  width: 260px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+#tweaks-panel h4 {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.tw-row { margin-bottom: 14px; }
+.tw-row label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-family: var(--font-mono); }
+.tw-row input[type="color"] { width: 100%; height: 32px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); cursor: pointer; }
+.tw-row input[type="text"] { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; color: var(--text); font-size: 13px; font-family: var(--font-mono); }
+.tw-row input:focus { outline: none; border-color: var(--accent); }
+.tw-row input[type="checkbox"] { accent-color: var(--accent); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  section { padding: 64px 24px; }
+  .pillars-inner { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); }
+  .feature-grid { grid-template-columns: 1fr; }
+  .features-header { grid-template-columns: 1fr; gap: 24px; }
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+  .privacy-strip { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; gap: 32px; text-align: center; }
+  .footer-note { text-align: center; }
+}
+</style>
+<link id="gfont-Noto-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"><link id="gfont-DM-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"></head>
+<body data-cc-id="cc-1" style="font-family: Lato; cursor: crosshair;">
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">A</div>
+    <span>Adnota</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#requests">Feature Requests</a>
+    <a href="https://github.com" target="_blank">GitHub</a>
+    <a href="#requests" class="nav-cta">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    v1 — coming soon to Chrome Web Store
+  </div>
+
+  <h1 data-cc-id="cc-2" style="font-family: Lato">Annotate<br>the web.</h1>
+  <p class="hero-sub">
+    Treat any website like your personal canvas. Erase, highlight, draw, and annotate — all persistent across sessions, all stored privately on your machine.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#requests" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
+      Join the Waitlist
+    </a>
+    <a href="#features" class="btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"></path></svg>
+      See it in action
+    </a>
+  </div>
+
+  <!-- BROWSER MOCKUP -->
+  <div class="browser-wrap reveal in" id="hero-browser">
+    <div class="browser-chrome">
+      <span class="b-dot b-red"></span>
+      <span class="b-dot b-amber"></span>
+      <span class="b-dot b-green"></span>
+      <div class="browser-bar">arstechnica.com/space/2026/04/article</div>
+      <div class="ext-chip">A</div>
+    </div>
+    <div class="browser-body">
+
+      <!-- Fake article -->
+      <div class="fake-article" style="position:relative; max-width: 560px;">
+        <div class="fake-site-header">
+          <span>ARS TECHNICA</span>
+          <span class="fake-site-tag">SPACE</span>
+        </div>
+        <div class="fake-h1">Three launches, one week, one pattern</div>
+        <div class="fake-byline">April 19, 2026 · 5 min read</div>
+        <p class="fake-p">On April 2, Cursor launched version 3, codenamed Glass. The release replaced Cursor's Composer pane with a dedicated Agents Window — a standalone interface built from scratch around managing multiple AI agents.</p>
+        <p class="fake-p">Three days earlier, OpenAI published <code style="font-size:11px;background:#e8e8ec;padding:1px 5px;border-radius:3px">codex-plugin-cc</code> on GitHub. <span class="anno-highlight" id="demo-highlight" style="transition: background 0.5s; background: rgba(236, 72, 153, 0.35);">The plugin installs directly inside Claude Code, Anthropic's terminal-based coding agent.</span> It provides six slash commands.</p>
+        <p class="fake-p">The structural insight is not that these tools launched in the same week — it is that they launched in a way that makes them composable.</p>
+
+        <!-- Sticky note -->
+        <div class="anno-sticky visible" id="demo-sticky">
+          <div class="sticky-header">04/19/26 · Adnota</div>
+          Follow up on this!
+        </div>
+
+        <!-- Pink rect annotation -->
+        <div class="anno-rect visible" id="demo-rect" style="top:48px;left:0;right:0;height:42px;"></div>
+      </div>
+
+      <!-- Erased sidebar placeholder -->
+      <div class="anno-erase-target erased" id="demo-erase-target">
+        <div>
+          <div style="font-size:14px;margin-bottom:6px;">📢</div>
+          <div>Advertisement<br><span style="font-size:9px;color:#bbb">300×250</span></div>
+        </div>
+      </div>
+
+      <!-- Radial menu -->
+      <div class="radial-menu open" id="radial-menu">
+        <div class="radial-center">A</div>
+        <div class="radial-sat" style="--tx:-38px; --ty:-28px; border-color: rgba(124,58,237,0.5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <div class="radial-sat" style="--tx:-52px; --ty:2px; border-color: rgba(231,76,60,0.5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>
+        </div>
+        <div class="radial-sat" style="--tx:-44px; --ty:34px; border-color: rgba(245,158,11,0.5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        </div>
+        <div class="radial-sat" style="--tx:-20px; --ty:52px; border-color: rgba(124,58,237,0.5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </div>
+        <div class="radial-sat" style="--tx:8px; --ty:56px; border-color: rgba(59,130,246,0.5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+        </div>
+      </div>
+
+      <!-- Adnota toolbar -->
+      <div class="adnota-toolbar">
+        <div class="tb-chip">A</div>
+        <div class="tb-sep"></div>
+        <!-- tools -->
+        <div class="tb-btn" title="Select">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-7 1-3 7z"></path></svg>
+        </div>
+        <div class="tb-btn active-pen" title="Pen">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </div>
+        <div class="tb-btn" title="Highlight">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M8.5 14.5L3 21h3l13-13-3-3-8 8z"></path></svg>
+        </div>
+        <div class="tb-btn" title="Arrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="19 12 19 5 12 5"></polyline></svg>
+        </div>
+        <div class="tb-btn" title="Rectangle">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
+        </div>
+        <div class="tb-btn" title="Text">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path></svg>
+        </div>
+        <div class="tb-sep"></div>
+        <!-- swatches -->
+        <div class="tb-swatch" style="background:#fbbf24;"></div>
+        <div class="tb-swatch swatch-active" style="background:#ec4899;"></div>
+        <div class="tb-swatch" style="background:#22c55e;"></div>
+        <div class="tb-swatch" style="background:#3b82f6;"></div>
+        <div class="tb-swatch" style="background:#111;"></div>
+        <div class="tb-sep"></div>
+        <!-- stroke widths -->
+        <div class="tb-dot-size" style="width:5px;height:5px;"></div>
+        <div class="tb-dot-size" style="width:8px;height:8px;opacity:0.7"></div>
+        <div class="tb-dot-size" style="width:11px;height:11px;opacity:0.5"></div>
+        <div class="tb-sep"></div>
+        <div class="tb-btn" title="Trash">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path></svg>
+        </div>
+        <div class="tb-btn" title="Undo">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M3 13A9 9 0 1 0 5.1 5.1L3 7"></path></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<div class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar reveal in" style="--p-color: var(--accent); --p-bg: var(--accent-soft); --p-border: var(--border);">
+      <div class="pillar-icon">🔒</div>
+      <h3>Zero cloud. Zero accounts.</h3>
+      <p>Everything lives in your browser's local storage. No servers, no accounts, no data ever leaving your machine.</p>
+    </div>
+    <div class="pillar reveal reveal-delay-1 in" style="--p-color: var(--green); --p-bg: var(--green-soft); --p-border: rgba(34,197,94,0.2);">
+      <div class="pillar-icon">⚡</div>
+      <h3>Persistent across every visit.</h3>
+      <p>Annotations restore automatically on the next visit — erased elements stay erased, highlights stay lit, notes stay anchored.</p>
+    </div>
+    <div class="pillar reveal reveal-delay-2 in" style="--p-color: var(--pink); --p-bg: var(--pink-soft); --p-border: rgba(236,72,153,0.2);">
+      <div class="pillar-icon">🎨</div>
+      <h3>Your canvas, your rules.</h3>
+      <p>Erase clutter, highlight insights, drop notes, draw freely, resize layouts. The entire web becomes your workspace.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-section">
+    <div class="features-header">
+      <div>
+        <div class="section-label">The Toolkit</div>
+        <h2 class="text-gradient" style="font-family: Lato">Four tools.<br>One canvas.</h2>
+      </div>
+      <p class="features-desc">
+        Adnota ships with four purpose-built tools, each solving a distinct problem with the web as you read it. Every annotation is anchored intelligently — surviving page refreshes, SPA navigations, and layout shifts.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+
+      <!-- Eraser -->
+      <div class="feature-card reveal" style="--f-color: var(--red); --f-bg: var(--red-soft); --f-border: rgba(231,76,60,0.25);">
+        <div class="feature-card-header">
+          <div class="feature-icon">🗑</div>
+          <div>
+            <h3>Eraser</h3>
+          </div>
+        </div>
+        <p>Permanently hide any page element. Hover to preview, click to erase. Scroll the mouse wheel to walk up the DOM and find the exact container you want gone. Ad-detection promotes erasures domain-wide automatically.</p>
+        <div class="feature-tag"><kbd style="font-family:var(--font-mono);font-size:10px">Alt+E</kbd></div>
+        <div class="feature-visual">
+          <div class="vis-eraser">
+            <div class="vis-eraser-text">
+              Lorem ipsum dolor sit amet<br>
+              consectetur adipiscing elit<br>
+              sed do eiusmod tempor
+            </div>
+            <div class="vis-eraser-outline">
+              <div class="vis-eraser-badge">210×120</div>
+            </div>
+            <div class="vis-eraser-hud">
+              <span style="color:var(--accent);font-size:6px">▣</span>
+              <span class="vis-eraser-conf">likely ad</span>
+              <span style="font-size:6px;opacity:0.5">·</span>
+              <span style="font-size:7px">ad-keyword</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Notes -->
+      <div class="feature-card reveal reveal-delay-1" style="--f-color: var(--amber); --f-bg: var(--amber-soft); --f-border: rgba(245,158,11,0.25);">
+        <div class="feature-card-header">
+          <div class="feature-icon">📝</div>
+          <div>
+            <h3>Sticky Notes</h3>
+          </div>
+        </div>
+        <p>Drop anchored text annotations anywhere on the page. Notes survive layout shifts using a multi-signal fuzzy anchor system — CSS selector, text fingerprint, structural context, and geometry scoring.</p>
+        <div class="feature-tag"><kbd style="font-family:var(--font-mono);font-size:10px">Alt+S</kbd></div>
+        <div class="feature-visual">
+          <div class="vis-sticky">
+            <div class="vis-sticky-text">
+              Lorem ipsum dolor sit amet<br>
+              consectetur adipiscing elit<br>
+              sed do eiusmod tempor ut<br>
+              labore et dolore magna aliqua
+            </div>
+            <div class="vis-note yellow">
+              <div style="font-size:6px;color:#999;margin-bottom:2px">04/19/26</div>
+              Follow up on this!
+            </div>
+            <div class="vis-note green" style="top:36px;right:72px;width:50px;height:40px;transform:rotate(-1.5deg)">
+              <div style="font-size:6px;color:#666;margin-bottom:2px">note</div>
+              Check source
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight & Draw -->
+      <div class="feature-card reveal reveal-delay-2" style="--f-color: var(--accent); --f-bg: var(--accent-soft); --f-border: var(--border);">
+        <div class="feature-card-header">
+          <div class="feature-icon">✏️</div>
+          <div>
+            <h3>Highlight &amp; Draw</h3>
+          </div>
+        </div>
+        <p>Text highlights via the CSS Custom Highlights API — zero DOM mutation, React-safe. Freehand pen, arrows, rectangles, ellipses, and text boxes overlay any page. Black mode = instant redaction.</p>
+        <div class="feature-tag"><kbd style="font-family:var(--font-mono);font-size:10px">Alt+H</kbd></div>
+        <div class="feature-visual">
+          <div class="vis-highlight">
+            Lorem ipsum dolor sit amet, <mark class="pink">consectetur adipiscing elit</mark>, sed do eiusmod tempor. <mark class="yellow">Ut labore et dolore magna</mark> aliqua ut enim ad minim.
+            <svg class="vis-arrow" width="40" height="30" viewBox="0 0 40 30" fill="none">
+              <path d="M5 25 Q20 5 35 10" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"></path>
+              <path d="M30 7 L35 10 L32 15" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resizer -->
+      <div class="feature-card reveal reveal-delay-3" style="--f-color: var(--blue); --f-bg: var(--blue-soft); --f-border: rgba(59,130,246,0.25);">
+        <div class="feature-card-header">
+          <div class="feature-icon">↔️</div>
+          <div>
+            <h3>Resizer</h3>
+          </div>
+        </div>
+        <p>Drag handles to resize any element — sidebars too wide, images too small, columns too narrow. Persists as injected CSS, domain-wide by default, surviving React and Vue re-renders.</p>
+        <div class="feature-tag" style="font-size:11px;font-family:var(--font-mono);color:var(--blue)">domain-wide</div>
+        <div class="feature-visual">
+          <div class="vis-resizer">
+            <div class="vis-resize-box">
+              <div class="resize-handle br"></div>
+              <div class="resize-handle r"></div>
+              <div class="resize-handle b"></div>
+              <div class="vis-resize-badge">480×320</div>
+              <div style="padding:8px;font-size:8px;color:#3b82f6;font-family:var(--font-mono);line-height:1.6;opacity:0.8">
+                width: 480px !important;<br>max-width: none;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-section" id="how">
+  <section style="padding-top:80px;padding-bottom:80px;">
+    <div class="how-inner">
+      <div class="how-header">
+        <div class="section-label" style="justify-content:center">How it works</div>
+        <h2 style="font-family: Lato">Install once.<br><span class="text-gradient">Own the web forever.</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <h3>Install from Chrome Web Store</h3>
+          <p>One click, no account, no sign-in. The extension injects itself into every page you visit, invisibly, until you need it.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">2</div>
+          <h3>Annotate any page</h3>
+          <p>Open the radial menu or use keyboard shortcuts. Erase distractions, highlight what matters, drop notes, resize layouts.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">3</div>
+          <h3>Come back to your canvas</h3>
+          <p>Every annotation auto-restores on the next visit. Your edited web stays edited — silently, privately, persistently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRIVACY STRIP -->
+<section style="padding-top:72px;padding-bottom:72px;">
+  <div class="privacy-strip">
+    <div class="priv-card reveal">
+      <div class="priv-icon">🔐</div>
+      <h4>No accounts</h4>
+      <p>Nothing to sign up for. Nothing to log into. The extension works immediately.</p>
+    </div>
+    <div class="priv-card reveal reveal-delay-1">
+      <div class="priv-icon">☁️</div>
+      <h4>No cloud</h4>
+      <p>All data lives in <code style="font-size:11px;background:var(--surface2);padding:1px 5px;border-radius:4px;">chrome.storage.local</code>. Never leaves your browser.</p>
+    </div>
+    <div class="priv-card reveal reveal-delay-2">
+      <div class="priv-icon">👁</div>
+      <h4>No tracking</h4>
+      <p>No analytics, no telemetry, no usage data collected. What you annotate is yours alone.</p>
+    </div>
+    <div class="priv-card reveal reveal-delay-3">
+      <div class="priv-icon">🔍</div>
+      <h4>Auditable</h4>
+      <p>No network requests, no hidden calls. Open DevTools and verify it yourself — the code does exactly what it says.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE REQUESTS -->
+<section id="requests" style="padding-top:40px;padding-bottom:100px;">
+  <div class="featureboard-section">
+    <div class="section-label" style="justify-content:center">Feature Requests</div>
+    <h2 style="font-family: Lato">Help shape<br><span class="text-gradient">what we build next.</span></h2>
+    <p style="color:var(--text-muted);font-size:16px;font-weight:300;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;">
+      Adnota is pre-launch and actively seeking input. Vote on the features you want most — every vote shapes the roadmap.
+    </p>
+
+    <div class="featureboard-card reveal">
+      <div class="featureboard-header">
+        <div class="fb-icon">💡</div>
+        <div>
+          <h3>Adnota Feature Board</h3>
+          <p>Vote · Request · Discuss</p>
+        </div>
+      </div>
+      <div class="featureboard-body">
+
+        <div class="feature-requests-list" id="fr-list">
+          <div class="fr-item" onclick="upvote(this)">
+            <div class="fr-votes">
+              <span class="fr-arrow">▲</span>
+              <span class="fr-count">24</span>
+            </div>
+            <div class="fr-content">
+              <h4>Cloud sync across devices</h4>
+              <p>Sync annotations between multiple machines via optional account</p>
+            </div>
+            <span class="fr-tag planned">planned</span>
+          </div>
+          <div class="fr-item" onclick="upvote(this)">
+            <div class="fr-votes">
+              <span class="fr-arrow">▲</span>
+              <span class="fr-count">18</span>
+            </div>
+            <div class="fr-content">
+              <h4>Export annotated page as PDF</h4>
+              <p>Print or save a redacted/highlighted version of any page</p>
+            </div>
+            <span class="fr-tag idea">idea</span>
+          </div>
+          <div class="fr-item" onclick="upvote(this)">
+            <div class="fr-votes">
+              <span class="fr-arrow">▲</span>
+              <span class="fr-count">15</span>
+            </div>
+            <div class="fr-content">
+              <h4>Broken anchor recovery UI</h4>
+              <p>Surface and re-pin annotations that couldn't be restored after page changes</p>
+            </div>
+            <span class="fr-tag wip">in progress</span>
+          </div>
+          <div class="fr-item" onclick="upvote(this)">
+            <div class="fr-votes">
+              <span class="fr-arrow">▲</span>
+              <span class="fr-count">11</span>
+            </div>
+            <div class="fr-content">
+              <h4>Firefox support</h4>
+              <p>Bring Adnota to Firefox and other Chromium-based browsers</p>
+            </div>
+            <span class="fr-tag idea">idea</span>
+          </div>
+          <div class="fr-item" onclick="upvote(this)">
+            <div class="fr-votes">
+              <span class="fr-arrow">▲</span>
+              <span class="fr-count">9</span>
+            </div>
+            <div class="fr-content">
+              <h4>Annotation search across all sites</h4>
+              <p>Search by content — find the page where you highlighted "privacy"</p>
+            </div>
+            <span class="fr-tag idea">idea</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+          <a href="https://featurebase.app" target="_blank" class="fb-cta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
+            Submit a Feature Request
+          </a>
+          <a href="#" class="btn-secondary" style="font-size:15px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <div class="logo-mark">A</div>
+      <span style="font-family:var(--font-display);font-weight:700;font-size:17px;">Adnota</span>
+    </div>
+    <div class="footer-tagline">The Persistent Canvas · Annotate the web, your way.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="https://github.com" target="_blank">GitHub</a>
+    <a href="#requests">Feature Requests</a>
+  </div>
+  <div class="footer-note">
+    Built with ♥ for the open web<br>
+    <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">v1 · Chrome Extension · MV3</span>
+  </div>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel" style="display: block;">
+  <h4>Tweaks</h4>
+  <div class="tw-row">
+    <label>Accent color</label>
+    <input type="color" id="tw-accent" value="#7c3aed" oninput="applyTweak('accentColor',this.value)">
+  </div>
+  <div class="tw-row">
+    <label>Hero tagline</label>
+    <input type="text" id="tw-tag" value="Annotate the web." oninput="applyTweak('heroTag',this.value)">
+  </div>
+  <div class="tw-row">
+    <label>CTA label</label>
+    <input type="text" id="tw-cta" value="Join the Waitlist" oninput="applyTweak('ctaLabel',this.value)">
+  </div>
+  <div class="tw-row" style="display:flex;align-items:center;gap:8px;">
+    <input type="checkbox" id="tw-fb" checked="" onchange="applyTweak('showFeatureBase',this.checked)">
+    <label style="margin-bottom:0;display:inline">Show Feature Board</label>
+  </div>
+</div>
+
+<script>
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── HERO BROWSER ANIMATION ── */
+const highlight = document.getElementById('demo-highlight');
+const sticky = document.getElementById('demo-sticky');
+const eraseTarget = document.getElementById('demo-erase-target');
+const rect = document.getElementById('demo-rect');
+
+function runHeroDemo() {
+  // Phase 1: highlight appears
+  setTimeout(() => { highlight.style.transition = 'background 0.5s'; highlight.style.background = 'rgba(236,72,153,0.35)'; }, 1000);
+  // Phase 2: sticky note pops in
+  setTimeout(() => { sticky.classList.add('visible'); }, 2000);
+  // Phase 3: rect annotation
+  setTimeout(() => { rect.classList.add('visible'); }, 3000);
+  // Phase 4: ad gets erased
+  setTimeout(() => {
+    eraseTarget.classList.add('anno-erase-hover');
+    setTimeout(() => {
+      eraseTarget.classList.add('erased');
+      eraseTarget.classList.remove('anno-erase-hover');
+    }, 700);
+  }, 4000);
+  // Loop
+  setTimeout(() => {
+    highlight.style.background = 'transparent';
+    sticky.classList.remove('visible');
+    rect.classList.remove('visible');
+    eraseTarget.classList.remove('erased');
+    setTimeout(runHeroDemo, 800);
+  }, 7500);
+}
+
+window.addEventListener('load', () => setTimeout(runHeroDemo, 1200));
+
+/* ── UPVOTE ── */
+function upvote(el) {
+  const count = el.querySelector('.fr-count');
+  const arrow = el.querySelector('.fr-arrow');
+  const n = parseInt(count.textContent);
+  count.textContent = n + 1;
+  arrow.style.color = 'var(--accent)';
+  count.style.color = 'var(--accent)';
+  el.style.borderColor = 'rgba(124,58,237,0.4)';
+  el.onclick = null; // one vote per session
+}
+
+/* ── TWEAKS ── */
+function applyTweak(key, val) {
+  if (key === 'accentColor') {
+    document.documentElement.style.setProperty('--accent', val);
+    document.documentElement.style.setProperty('--accent-glow', val + '59');
+    document.documentElement.style.setProperty('--accent-soft', val + '1a');
+  }
+  if (key === 'heroTag') {
+    document.querySelector('h1').innerHTML = val.replace('\n','<br>');
+  }
+  if (key === 'ctaLabel') {
+    document.querySelector('.btn-primary').childNodes[1].textContent = ' ' + val;
+  }
+  if (key === 'showFeatureBase') {
+    document.getElementById('requests').style.display = val ? '' : 'none';
+  }
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+}
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').style.display = 'block';
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+</script>
+
+
+</body></html>
