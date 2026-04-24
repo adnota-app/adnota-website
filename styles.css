@@ -254,7 +254,12 @@ h1 {
 }
 
 /* Fake article content */
-.fake-article { max-width: 580px; position: relative; }
+.fake-article {
+  max-width: 580px;
+  position: relative;
+  transition: max-width 0.8s ease;
+}
+.fake-article.expanded { max-width: 760px !important; }
 .fake-site-header {
   font-family: 'Arial Black', sans-serif;
   font-size: 18px; font-weight: 900;
@@ -270,12 +275,15 @@ h1 {
 
 /* Adnota overlays on fake article */
 .anno-highlight {
-  background: rgba(236,72,153,0.35);
+  background: transparent;
   border-radius: 2px;
   transition: background 0.3s;
 }
+.anno-highlight.visible {
+  background: rgba(250, 204, 21, 0.55);
+}
 .anno-erase-target {
-  position: absolute; right: 0; top: 0; bottom: 0; width: 200px;
+  position: absolute; right: 12px; top: 24px; bottom: 24px; width: 180px;
   background: #e8e8ec;
   border: 2px dashed #ccc;
   border-radius: 8px;
@@ -284,32 +292,147 @@ h1 {
   text-align: center; padding: 16px;
   transition: opacity 0.4s;
 }
+.anno-erase-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #0f0f0f;
+  color: #e4e4e7;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.anno-erase-target.anno-erase-hover .anno-erase-badge {
+  opacity: 1;
+}
 .anno-erase-target.erased {
   opacity: 0;
 }
 .anno-erase-hover {
-  outline: 2px solid #e74c3c;
-  background: rgba(231,76,60,0.05) !important;
+  border: 2px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+}
+.anno-resize-hover {
+  outline: 2px dashed #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
+/* Resizer selection handles — ported from webrevise/content/resizer.css.
+   Children of .fake-article; hidden (opacity 0) until parent has .anno-resize-hover.
+   Class names are `resizer-*` to avoid colliding with the feature-card
+   `.resize-handle` styles elsewhere in this stylesheet. */
+.resizer-handle,
+.resizer-reset {
+  position: absolute;
+  background: #3b82f6;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 4;
+}
+.fake-article.anno-resize-hover .resizer-handle,
+.fake-article.anno-resize-hover .resizer-reset {
+  opacity: 1;
+}
+
+.resizer-handle.rz-left,
+.resizer-handle.rz-right   { width: 8px;  height: 28px; border-radius: 4px; top: 50%; transform: translateY(-50%); }
+.resizer-handle.rz-top,
+.resizer-handle.rz-bottom  { width: 28px; height: 8px;  border-radius: 4px; left: 50%; transform: translateX(-50%); }
+.resizer-handle.rz-corner  { width: 10px; height: 10px; border-radius: 2px; }
+
+.resizer-handle.rz-left    { left:   -5px; }
+.resizer-handle.rz-right   { right:  -5px; }
+.resizer-handle.rz-top     { top:    -5px; }
+.resizer-handle.rz-bottom  { bottom: -5px; }
+.resizer-handle.rz-corner  { bottom: -6px; right: -6px; }
+
+.resizer-reset {
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.resizer-reset svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Sticky note — matches the real extension's card (webrevise/content/sticky.css
+   .vellum-sticky-card + .vellum-theme-yellow). Scaled down from 260×140 to
+   fit the demo mockup; colors, shadows, and the diagonal-stripe resizer
+   corner are preserved as-is. */
 .anno-sticky {
   position: absolute;
-  top: 20px; right: 16px;
-  width: 150px;
-  background: #fef08a;
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-family: Arial, sans-serif;
-  font-size: 11px; color: #555;
-  box-shadow: 2px 4px 14px rgba(0,0,0,0.2);
-  line-height: 1.5;
-  transform: rotate(1.5deg);
+  top: 12px;
+  right: 20px;
+  width: 210px;
+  min-height: 105px;
+  background: #FBE6A1;
+  color: #7A5B15;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 5;
   opacity: 0;
-  transition: opacity 0.4s, transform 0.4s;
+  transition: opacity 0.4s;
 }
-.anno-sticky.visible { opacity: 1; transform: rotate(1.5deg) translateY(0); }
-.sticky-header { font-size: 9px; color: #aaa; margin-bottom: 4px; }
+.anno-sticky.visible { opacity: 1; }
+
+.sticky-header {
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px 0 10px;
+  border-bottom: 1px solid rgba(122, 91, 21, 0.15);
+  flex-shrink: 0;
+}
+.sticky-timestamp {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  opacity: 0.5;
+}
+.sticky-x {
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.45;
+}
+.sticky-body {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  flex: 1;
+}
+.sticky-resize-corner {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 12px;
+  height: 12px;
+  background-image: repeating-linear-gradient(135deg,
+    transparent, transparent 3px,
+    rgba(122, 91, 21, 0.2) 3px, rgba(122, 91, 21, 0.2) 4px);
+  pointer-events: none;
+}
 
 .anno-rect {
   position: absolute;
@@ -320,96 +443,6 @@ h1 {
   transition: opacity 0.3s;
 }
 .anno-rect.visible { opacity: 1; }
-
-/* Adnota toolbar */
-.adnota-toolbar {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(15,15,20,0.94);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 6px 10px;
-  display: flex; align-items: center; gap: 6px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-.tb-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.1); }
-
-.tb-chip {
-  width: 22px; height: 22px;
-  background: linear-gradient(135deg, #7c3aed, #9333ea);
-  border-radius: 5px;
-  display: grid; place-items: center;
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 10px;
-  color: white;
-}
-
-.tb-btn {
-  width: 24px; height: 24px;
-  border-radius: 5px;
-  display: grid; place-items: center;
-  cursor: pointer;
-  transition: background 0.15s;
-  color: rgba(255,255,255,0.5);
-}
-.tb-btn:hover, .tb-btn.active { background: rgba(255,255,255,0.1); color: white; }
-.tb-btn.active-pen { color: #a78bfa; background: rgba(124,58,237,0.2); }
-
-.tb-swatch {
-  width: 14px; height: 14px; border-radius: 50%;
-  cursor: pointer; transition: transform 0.15s;
-}
-.tb-swatch:hover { transform: scale(1.2); }
-.swatch-active { outline: 2px solid white; outline-offset: 2px; }
-
-.tb-dot-size {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-}
-
-/* Radial menu */
-.radial-menu {
-  position: absolute;
-  bottom: 18px; left: 18px;
-  z-index: 10;
-}
-
-.radial-center {
-  width: 34px; height: 34px;
-  background: rgba(20,20,30,0.92);
-  border: 1.5px solid rgba(124,58,237,0.6);
-  border-radius: 50%;
-  display: grid; place-items: center;
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 14px;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 16px rgba(124,58,237,0.4);
-  position: relative; z-index: 2;
-}
-
-.radial-sat {
-  position: absolute;
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: rgba(20,20,30,0.92);
-  border: 1.5px solid rgba(255,255,255,0.15);
-  display: grid; place-items: center;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.3s, transform 0.3s;
-}
-.radial-sat svg { width: 13px; height: 13px; }
-
-.radial-menu.open .radial-sat {
-  opacity: 1;
-  transform: scale(1) translate(var(--tx), var(--ty));
-}
 
 /* ── SECTIONS ── */
 section { padding: 100px 48px; }

@@ -1,0 +1,229 @@
+/* Hero mockup — dock styles ported from the Adnota (ex-Vellum) extension.
+   Source: webrevise/content/dock.css + webrevise/lib/vellumUI.css.
+   Every rule is scoped under .hero-mockup so identical class names (e.g.
+   #vellum-dock, .vellum-dock-tool) cannot leak into the rest of the site.
+   Two deltas from the extension's version: position is absolute (scoped to
+   .browser-body) not fixed, and there is no idle-opacity dim — the demo
+   dock is always at full opacity. */
+
+/* Full-width flex wrapper so .browser-wrap's `width: min(900px, 100%)` keeps
+   resolving against the hero's full content-width, not the wrapper's
+   intrinsic size. */
+.hero-mockup {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-mockup #vellum-dock {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  min-height: 42px;
+  box-sizing: border-box;
+
+  background: rgba(15, 15, 15, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12.5px;
+  line-height: 1;
+
+  border-radius: 10px;
+  border: 1px solid var(--dock-accent-border, rgba(124, 58, 237, 0.45));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+
+  pointer-events: auto;
+  white-space: nowrap;
+  cursor: default;
+
+  transition: border-color 0.3s ease;
+}
+
+/* ── Home slot: V logo (idle) OR back arrow (active) ───────────────────── */
+.hero-mockup .vellum-dock-home {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hero-mockup .vellum-dock-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.28);
+  color: #c084fc;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hero-mockup .vellum-dock-logo:hover {
+  background: rgba(124, 58, 237, 0.45);
+  color: #e9d5ff;
+}
+
+.hero-mockup .vellum-dock-back {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(124, 58, 237, 0.28);
+  color: #c084fc;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hero-mockup .vellum-dock-back svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translateX(-1px);
+}
+
+.hero-mockup .vellum-dock-back:hover {
+  background: rgba(124, 58, 237, 0.45);
+}
+
+.hero-mockup #vellum-dock.vellum-dock-active .vellum-dock-logo { display: none; }
+.hero-mockup #vellum-dock.vellum-dock-active .vellum-dock-back { display: inline-flex; }
+
+/* ── Tool row (idle) ───────────────────────────────────────────────────── */
+.hero-mockup .vellum-dock-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.hero-mockup #vellum-dock.vellum-dock-active .vellum-dock-tools {
+  display: none;
+}
+
+.hero-mockup .vellum-dock-tool {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero-mockup .vellum-dock-tool svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #94a3b8;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.15s ease;
+}
+
+.hero-mockup .vellum-dock-tool:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--tool-color, rgba(124, 58, 237, 0.6));
+}
+.hero-mockup .vellum-dock-tool:hover svg {
+  stroke: var(--tool-color, #c084fc);
+}
+
+.hero-mockup .vellum-dock-tool.active {
+  border-color: var(--tool-color, rgba(124, 58, 237, 0.7));
+  box-shadow: 0 0 8px var(--tool-glow, rgba(124, 58, 237, 0.25));
+}
+.hero-mockup .vellum-dock-tool.active svg {
+  stroke: var(--tool-color, #c084fc);
+}
+
+/* Per-tool accent for the idle row buttons */
+.hero-mockup .vellum-dock-tool[data-accent="eraser"]    { --tool-color: #ef4444; --tool-glow: rgba(239, 68, 68, 0.3); }
+.hero-mockup .vellum-dock-tool[data-accent="sticky"]    { --tool-color: #f59e0b; --tool-glow: rgba(245, 158, 11, 0.3); }
+.hero-mockup .vellum-dock-tool[data-accent="highlight"] { --tool-color: #7c3aed; --tool-glow: rgba(124, 58, 237, 0.3); }
+.hero-mockup .vellum-dock-tool[data-accent="resizer"]   { --tool-color: #3b82f6; --tool-glow: rgba(59, 130, 246, 0.3); }
+
+/* ── Tool body (active state — empty/collapsed in phase 1) ─────────────── */
+.hero-mockup .vellum-dock-body {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-left: 0;
+  transition: max-width 0.18s ease-out,
+              opacity 0.12s ease-out,
+              margin-left 0.18s ease-out;
+}
+
+.hero-mockup #vellum-dock.vellum-dock-active .vellum-dock-body {
+  max-width: 1200px;
+  opacity: 1;
+  margin-left: 8px;
+}
+
+/* ── Per-tool accent: dock border + back arrow tint ────────────────────── */
+.hero-mockup #vellum-dock[data-accent="eraser"]    { --dock-accent-border: rgba(239, 68, 68, 0.55); }
+.hero-mockup #vellum-dock[data-accent="eraser"]    .vellum-dock-back { background: rgba(239, 68, 68, 0.35); color: #fca5a5; }
+.hero-mockup #vellum-dock[data-accent="eraser"]    .vellum-dock-back:hover { background: rgba(239, 68, 68, 0.55); }
+
+.hero-mockup #vellum-dock[data-accent="sticky"]    { --dock-accent-border: rgba(245, 158, 11, 0.55); }
+.hero-mockup #vellum-dock[data-accent="sticky"]    .vellum-dock-back { background: rgba(245, 158, 11, 0.35); color: #fcd34d; }
+.hero-mockup #vellum-dock[data-accent="sticky"]    .vellum-dock-back:hover { background: rgba(245, 158, 11, 0.55); }
+
+.hero-mockup #vellum-dock[data-accent="highlight"] { --dock-accent-border: rgba(124, 58, 237, 0.55); }
+.hero-mockup #vellum-dock[data-accent="highlight"] .vellum-dock-back { background: rgba(124, 58, 237, 0.35); color: #c084fc; }
+.hero-mockup #vellum-dock[data-accent="highlight"] .vellum-dock-back:hover { background: rgba(124, 58, 237, 0.55); }
+
+.hero-mockup #vellum-dock[data-accent="resizer"]   { --dock-accent-border: rgba(59, 130, 246, 0.55); }
+.hero-mockup #vellum-dock[data-accent="resizer"]   .vellum-dock-back { background: rgba(59, 130, 246, 0.35); color: #93c5fd; }
+.hero-mockup #vellum-dock[data-accent="resizer"]   .vellum-dock-back:hover { background: rgba(59, 130, 246, 0.55); }
+
+/* ── Drag handle (braille-glyph dots) ──────────────────────────────────── */
+.hero-mockup .vellum-toolbar-drag {
+  color: #525264;
+  font-size: 18px;
+  letter-spacing: -1.5px;
+  font-weight: bold;
+  cursor: grab;
+  margin-right: 8px;
+  margin-bottom: 5px;
+  user-select: none;
+  padding: 0 4px;
+}
+
+.hero-mockup .vellum-toolbar-drag:active {
+  cursor: grabbing;
+}

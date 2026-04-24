@@ -10,6 +10,7 @@
 <link id="gfont-Noto-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap">
 <link id="gfont-DM-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="demo.css">
 
 <script type="application/json" id="__tweaks__">
 {
@@ -64,6 +65,7 @@
   </div>
 
   <!-- BROWSER MOCKUP -->
+  <div class="hero-mockup">
   <div class="browser-wrap reveal in" id="hero-browser">
     <div class="browser-chrome">
       <span class="b-dot b-red"></span>
@@ -83,92 +85,70 @@
         <div class="fake-h1">Three launches, one week, one pattern</div>
         <div class="fake-byline">April 19, 2026 · 5 min read</div>
         <p class="fake-p">On April 2, Cursor launched version 3, codenamed Glass. The release replaced Cursor's Composer pane with a dedicated Agents Window — a standalone interface built from scratch around managing multiple AI agents.</p>
-        <p class="fake-p">Three days earlier, OpenAI published <code style="font-size:11px;background:#e8e8ec;padding:1px 5px;border-radius:3px">codex-plugin-cc</code> on GitHub. <span class="anno-highlight" id="demo-highlight" style="transition: background 0.5s; background: rgba(236, 72, 153, 0.35);">The plugin installs directly inside Claude Code, Anthropic's terminal-based coding agent.</span> It provides six slash commands.</p>
+        <p class="fake-p">Three days earlier, OpenAI published <code style="font-size:11px;background:#e8e8ec;padding:1px 5px;border-radius:3px">codex-plugin-cc</code> on GitHub. <span class="anno-highlight" id="demo-highlight">The plugin installs directly inside Claude Code, Anthropic's terminal-based coding agent.</span> It provides six slash commands.</p>
         <p class="fake-p">The structural insight is not that these tools launched in the same week — it is that they launched in a way that makes them composable.</p>
 
-        <!-- Sticky note -->
-        <div class="anno-sticky visible" id="demo-sticky">
-          <div class="sticky-header">04/19/26 · Adnota</div>
-          Follow up on this!
-        </div>
+        <!-- Pink rect annotation (position + size set by demo.js at runtime) -->
+        <div class="anno-rect" id="demo-rect"></div>
 
-        <!-- Pink rect annotation -->
-        <div class="anno-rect visible" id="demo-rect" style="top:48px;left:0;right:0;height:42px;"></div>
+        <!-- Resize handles (hidden unless .anno-resize-hover on parent) -->
+        <div class="resizer-handle rz-left"></div>
+        <div class="resizer-handle rz-right"></div>
+        <div class="resizer-handle rz-top"></div>
+        <div class="resizer-handle rz-bottom"></div>
+        <div class="resizer-handle rz-corner"></div>
+        <div class="resizer-reset" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
+        </div>
       </div>
 
       <!-- Erased sidebar placeholder -->
-      <div class="anno-erase-target erased" id="demo-erase-target">
+      <div class="anno-erase-target" id="demo-erase-target">
+        <div class="anno-erase-badge">180 × 312</div>
         <div>
           <div style="font-size:14px;margin-bottom:6px;">📢</div>
           <div>Advertisement<br><span style="font-size:9px;color:#bbb">300×250</span></div>
         </div>
       </div>
 
-      <!-- Radial menu -->
-      <div class="radial-menu open" id="radial-menu">
-        <div class="radial-center">A</div>
-        <div class="radial-sat" style="--tx:-38px; --ty:-28px; border-color: rgba(124,58,237,0.5);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      <!-- Sticky note (sibling of .fake-article so it can float freely
+           in the browser body, not clamped by the article's max-width) -->
+      <div class="anno-sticky" id="demo-sticky">
+        <div class="sticky-header">
+          <span class="sticky-timestamp">04/19/26</span>
+          <span class="sticky-x" aria-hidden="true">✕</span>
         </div>
-        <div class="radial-sat" style="--tx:-52px; --ty:2px; border-color: rgba(231,76,60,0.5);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path></svg>
-        </div>
-        <div class="radial-sat" style="--tx:-44px; --ty:34px; border-color: rgba(245,158,11,0.5);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-        </div>
-        <div class="radial-sat" style="--tx:-20px; --ty:52px; border-color: rgba(124,58,237,0.5);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-        </div>
-        <div class="radial-sat" style="--tx:8px; --ty:56px; border-color: rgba(59,130,246,0.5);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
-        </div>
+        <div class="sticky-body"><span id="demo-sticky-text"></span></div>
+        <div class="sticky-resize-corner" aria-hidden="true"></div>
       </div>
 
-      <!-- Adnota toolbar -->
-      <div class="adnota-toolbar">
-        <div class="tb-chip">A</div>
-        <div class="tb-sep"></div>
-        <!-- tools -->
-        <div class="tb-btn" title="Select">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-7 1-3 7z"></path></svg>
+      <!-- Dock toolbar (ported from extension — styles in demo.css) -->
+      <div id="vellum-dock" data-vellum-ui="1">
+        <span class="vellum-toolbar-drag">⡇</span>
+        <div class="vellum-dock-home">
+          <span class="vellum-dock-logo">V</span>
         </div>
-        <div class="tb-btn active-pen" title="Pen">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-        </div>
-        <div class="tb-btn" title="Highlight">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M8.5 14.5L3 21h3l13-13-3-3-8 8z"></path></svg>
-        </div>
-        <div class="tb-btn" title="Arrow">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"></line><polyline points="19 12 19 5 12 5"></polyline></svg>
-        </div>
-        <div class="tb-btn" title="Rectangle">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
-        </div>
-        <div class="tb-btn" title="Text">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path></svg>
-        </div>
-        <div class="tb-sep"></div>
-        <!-- swatches -->
-        <div class="tb-swatch" style="background:#fbbf24;"></div>
-        <div class="tb-swatch swatch-active" style="background:#ec4899;"></div>
-        <div class="tb-swatch" style="background:#22c55e;"></div>
-        <div class="tb-swatch" style="background:#3b82f6;"></div>
-        <div class="tb-swatch" style="background:#111;"></div>
-        <div class="tb-sep"></div>
-        <!-- stroke widths -->
-        <div class="tb-dot-size" style="width:5px;height:5px;"></div>
-        <div class="tb-dot-size" style="width:8px;height:8px;opacity:0.7"></div>
-        <div class="tb-dot-size" style="width:11px;height:11px;opacity:0.5"></div>
-        <div class="tb-sep"></div>
-        <div class="tb-btn" title="Trash">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6M14 11v6"></path></svg>
-        </div>
-        <div class="tb-btn" title="Undo">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M3 13A9 9 0 1 0 5.1 5.1L3 7"></path></svg>
+        <div class="vellum-dock-tools">
+          <button type="button" class="vellum-dock-tool" data-tool-id="eraser" data-accent="eraser">
+            <svg viewBox="0 0 24 24"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+          </button>
+          <button type="button" class="vellum-dock-tool" data-tool-id="sticky" data-accent="sticky">
+            <svg viewBox="0 0 24 24"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+          </button>
+          <button type="button" class="vellum-dock-tool" data-tool-id="marker" data-accent="highlight">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </button>
+          <button type="button" class="vellum-dock-tool" data-tool-id="resizer" data-accent="resizer">
+            <svg viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+          </button>
+          <button type="button" class="vellum-dock-tool" data-tool-id="vis">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
         </div>
       </div>
 
     </div>
+  </div>
   </div>
 </section>
 
@@ -595,5 +575,6 @@
 </div> -->
 
 <script src="main.js"></script>
+<script src="demo.js"></script>
 </body>
 </html>
