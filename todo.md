@@ -1,9 +1,8 @@
 
 
 todo:
-- update readme with implementation details
-
-
+- update BROWSER MOCKUP to match actual extension
 
 done:
 - breaking into separate files
+- update readme with implementation details
