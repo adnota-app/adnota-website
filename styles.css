@@ -199,25 +199,34 @@ h1 {
 }
 .btn-secondary:hover { color: var(--text); border-color: rgba(124,58,237,0.4); background: var(--surface2); }
 
-/* ── BROWSER MOCKUP ── */
+/* ── BROWSER MOCKUP ──
+   Softened so the mockup reads as a site element, not a real OS window:
+   reduced drop shadow, a subtle purple halo that ties it to the brand,
+   and muted traffic-light dots (desaturated + lowered opacity). */
 .browser-wrap {
   width: min(900px, 100%);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.18);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.45),
+    0 0 80px -20px rgba(124,58,237,0.35),
+    0 0 0 1px rgba(124,58,237,0.12);
   position: relative;
   background: #fff;
 }
 
 .browser-chrome {
-  background: #1e1e24;
+  background: linear-gradient(180deg, #1e1e24 0%, #17171d 100%);
   height: 38px;
   display: flex; align-items: center;
   padding: 0 14px; gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-.b-dot { width: 10px; height: 10px; border-radius: 50%; }
+.b-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  opacity: 0.55;
+}
 .b-red { background: #ff5f57; }
 .b-amber { background: #febc2e; }
 .b-green { background: #28c840; }
@@ -617,7 +626,13 @@ h2 {
   position: relative;
 }
 
-/* ── DEMO VISUALS (CSS art for feature cards) ── */
+/* ── DEMO VISUALS (CSS art for feature cards) ──
+   Miniature recreations of each tool's real appearance. Colors/patterns
+   mirror the actual extension: eraser uses #ef4444 with a dark dimension
+   pill; sticky uses #FBE6A1/#B8F5B8 with a header divider + diagonal
+   stripes corner; marker highlights are yellow-dominant; resizer has the
+   white-bordered pill handles and corner square. */
+
 .vis-eraser {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, #0f0f1a, #1a1025);
@@ -628,13 +643,20 @@ h2 {
 .vis-eraser-outline {
   position: absolute; right: 20px; top: 12px;
   width: 80px; height: 55px;
-  border: 1.5px solid #e74c3c;
+  border: 1.5px solid #ef4444;
   border-radius: 4px;
-  background: rgba(231,76,60,0.06);
-  display: flex; align-items: flex-end; justify-content: flex-end;
-  padding: 3px;
+  background: rgba(239, 68, 68, 0.15);
 }
-.vis-eraser-badge { font-family: var(--font-mono); font-size: 7px; color: #e74c3c; opacity: 0.8; }
+.vis-eraser-badge {
+  position: absolute;
+  top: 2px; right: 2px;
+  font-family: var(--font-mono);
+  font-size: 7px;
+  background: #0f0f0f;
+  color: #e4e4e7;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
 .vis-eraser-hud {
   position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
   background: rgba(15,15,20,0.92);
@@ -645,7 +667,7 @@ h2 {
   white-space: nowrap;
   display: flex; gap: 6px; align-items: center;
 }
-.vis-eraser-conf { color: #e74c3c; }
+.vis-eraser-conf { color: #ef4444; }
 
 .vis-sticky {
   width: 100%; height: 100%;
@@ -654,16 +676,61 @@ h2 {
 }
 .vis-sticky-text { position: absolute; top: 10px; left: 12px; font-size: 8px; color: #555; line-height: 1.8; }
 .vis-note {
-  position: absolute; top: 6px; right: 10px;
-  width: 56px; height: 52px;
-  border-radius: 3px;
-  padding: 5px 6px;
-  font-size: 7px; line-height: 1.4;
-  box-shadow: 2px 3px 8px rgba(0,0,0,0.15);
+  position: absolute;
+  width: 64px;
+  min-height: 52px;
+  border-radius: 6px;
+  font-size: 7px;
+  line-height: 1.4;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.vis-note.yellow {
+  top: 6px; right: 10px;
+  background: #FBE6A1; color: #7A5B15;
   transform: rotate(2deg);
 }
-.vis-note.yellow { background: #fef08a; color: #555; }
-.vis-note.green { background: #bbf7d0; color: #374151; }
+.vis-note.green {
+  top: 36px; right: 74px;
+  background: #B8F5B8; color: #2A6A2A;
+  transform: rotate(-2deg);
+  width: 56px;
+}
+.vis-note > div:first-child {
+  font-size: 6px;
+  padding: 2px 6px 2px;
+  opacity: 0.55;
+  line-height: 1;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.vis-note.yellow > div:first-child { border-bottom: 1px solid rgba(122,91,21,0.2); }
+.vis-note.green  > div:first-child { border-bottom: 1px solid rgba(42,106,42,0.2); }
+.vis-note > div:last-child,
+.vis-note > :not(:first-child) {
+  padding: 3px 6px;
+  flex: 1;
+  font-weight: 500;
+}
+.vis-note::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; right: 2px;
+  width: 8px; height: 8px;
+}
+.vis-note.yellow::after {
+  background-image: repeating-linear-gradient(135deg,
+    transparent, transparent 2px,
+    rgba(122,91,21,0.3) 2px, rgba(122,91,21,0.3) 3px);
+}
+.vis-note.green::after {
+  background-image: repeating-linear-gradient(135deg,
+    transparent, transparent 2px,
+    rgba(42,106,42,0.3) 2px, rgba(42,106,42,0.3) 3px);
+}
 
 .vis-highlight {
   width: 100%; height: 100%;
@@ -672,11 +739,14 @@ h2 {
   font-size: 9px; color: #333; line-height: 1.8;
   position: relative;
 }
-mark.pink { background: rgba(236,72,153,0.3); color: inherit; padding: 1px 0; }
-mark.yellow { background: rgba(250,204,21,0.4); color: inherit; padding: 1px 0; }
-.vis-arrow {
-  position: absolute; right: 12px; top: 16px;
-  opacity: 0.7;
+mark.pink   { background: rgba(236, 72, 153, 0.35); color: inherit; padding: 1px 0; border-radius: 2px; }
+mark.yellow { background: rgba(250, 204, 21, 0.55); color: inherit; padding: 1px 0; border-radius: 2px; }
+.vis-draw {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  pointer-events: none;
+  opacity: 0.92;
 }
 
 .vis-resizer {
@@ -688,24 +758,43 @@ mark.yellow { background: rgba(250,204,21,0.4); color: inherit; padding: 1px 0; 
 .vis-resize-box {
   width: 80px; height: 60px;
   border: 1.5px dashed #3b82f6;
-  border-radius: 4px;
-  background: rgba(59,130,246,0.05);
+  border-radius: 2px;
+  background: transparent;
   position: relative;
 }
+/* Feature-card resize handles — pill-shaped to mirror the real extension.
+   (Class names .resize-handle.br/.r/.b are legacy; the shapes below match
+   the new resizer-handle styles in the hero mockup, just scaled down.) */
 .resize-handle {
   position: absolute;
-  width: 8px; height: 8px;
   background: #3b82f6;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.resize-handle.br {
+  width: 7px; height: 7px;
+  bottom: -4px; right: -4px;
   border-radius: 2px;
 }
-.resize-handle.br { bottom: -4px; right: -4px; cursor: nwse-resize; }
-.resize-handle.r { top: 50%; right: -4px; transform: translateY(-50%); }
-.resize-handle.b { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.resize-handle.r {
+  width: 5px; height: 18px;
+  top: 50%; right: -3px; transform: translateY(-50%);
+  border-radius: 3px;
+}
+.resize-handle.b {
+  width: 18px; height: 5px;
+  bottom: -3px; left: 50%; transform: translateX(-50%);
+  border-radius: 3px;
+}
 .vis-resize-badge {
-  position: absolute; top: -1px; right: -1px;
+  position: absolute; top: -8px; right: -8px;
   font-family: var(--font-mono); font-size: 7px;
   background: #3b82f6; color: white;
-  border-radius: 3px; padding: 1px 5px;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 1.3;
 }
 
 /* ── HOW IT WORKS ── */

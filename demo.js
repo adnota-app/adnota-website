@@ -10,6 +10,7 @@ const sticky = document.getElementById('demo-sticky');
 const stickyText = document.getElementById('demo-sticky-text');
 const eraseTarget = document.getElementById('demo-erase-target');
 const rect = document.getElementById('demo-rect');
+const caption = document.getElementById('demo-caption');
 
 const tools = {
   eraser:  dock.querySelector('[data-tool-id="eraser"]'),
@@ -18,11 +19,28 @@ const tools = {
   resizer: dock.querySelector('[data-tool-id="resizer"]'),
 };
 
+const CAPTION_COLOR = {
+  eraser:    '#ef4444',
+  resizer:   '#3b82f6',
+  sticky:    '#f59e0b',
+  highlight: '#a78bfa',
+};
+
 function setActive(toolId, accent) {
   Object.values(tools).forEach(btn => btn.classList.remove('active'));
   if (toolId && tools[toolId]) tools[toolId].classList.add('active');
   if (accent) dock.setAttribute('data-accent', accent);
   else dock.removeAttribute('data-accent');
+}
+
+function setCaption(text, accent) {
+  if (!text) {
+    caption.classList.remove('visible');
+    return;
+  }
+  caption.textContent = text;
+  caption.style.setProperty('--caption-color', CAPTION_COLOR[accent] || 'var(--accent)');
+  caption.classList.add('visible');
 }
 
 function wait(ms) {
@@ -68,6 +86,7 @@ function stripState() {
   rect.classList.remove('visible');
   highlight.classList.remove('visible');
   setActive(null);
+  setCaption(null);
 }
 
 async function runLoop() {
@@ -76,9 +95,10 @@ async function runLoop() {
 
   /* Eraser — select the ad (red outline + dimension badge), then remove it. */
   setActive('eraser', 'eraser');
+  setCaption('Erase noise', 'eraser');
   await wait(700);
   eraseTarget.classList.add('anno-erase-hover');
-  await wait(950);
+  await wait(1450);
   eraseTarget.classList.add('erased');
   eraseTarget.classList.remove('anno-erase-hover');
   await wait(900);
@@ -86,6 +106,7 @@ async function runLoop() {
   /* Resizer — blue dashed outline + handles appear, article expands while
      still "selected" so the drag-to-resize gesture reads clearly. */
   setActive('resizer', 'resizer');
+  setCaption('Resize things', 'resizer');
   await wait(700);
   article.classList.add('anno-resize-hover');
   await wait(600);
@@ -96,6 +117,7 @@ async function runLoop() {
 
   /* Sticky — drop a note, type the body text. */
   setActive('sticky', 'sticky');
+  setCaption('Take notes', 'sticky');
   await wait(700);
   sticky.classList.add('visible');
   await wait(400);
@@ -104,6 +126,7 @@ async function runLoop() {
 
   /* Marker — yellow highlight on a sentence, pink box around the headline. */
   setActive('marker', 'highlight');
+  setCaption('Highlight and Paint', 'highlight');
   await wait(700);
   highlight.classList.add('visible');
   await wait(800);
