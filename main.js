@@ -4,39 +4,6 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ── HERO BROWSER ANIMATION ── */
-const highlight = document.getElementById('demo-highlight');
-const sticky = document.getElementById('demo-sticky');
-const eraseTarget = document.getElementById('demo-erase-target');
-const rect = document.getElementById('demo-rect');
-
-function runHeroDemo() {
-  // Phase 1: highlight appears
-  setTimeout(() => { highlight.style.transition = 'background 0.5s'; highlight.style.background = 'rgba(236,72,153,0.35)'; }, 1000);
-  // Phase 2: sticky note pops in
-  setTimeout(() => { sticky.classList.add('visible'); }, 2000);
-  // Phase 3: rect annotation
-  setTimeout(() => { rect.classList.add('visible'); }, 3000);
-  // Phase 4: ad gets erased
-  setTimeout(() => {
-    eraseTarget.classList.add('anno-erase-hover');
-    setTimeout(() => {
-      eraseTarget.classList.add('erased');
-      eraseTarget.classList.remove('anno-erase-hover');
-    }, 700);
-  }, 4000);
-  // Loop
-  setTimeout(() => {
-    highlight.style.background = 'transparent';
-    sticky.classList.remove('visible');
-    rect.classList.remove('visible');
-    eraseTarget.classList.remove('erased');
-    setTimeout(runHeroDemo, 800);
-  }, 7500);
-}
-
-window.addEventListener('load', () => setTimeout(runHeroDemo, 1200));
-
 /* ── UPVOTE ── */
 function upvote(el) {
   const count = el.querySelector('.fr-count');
