@@ -19,15 +19,19 @@ The site is structured as a single-page scroll with anchor-based navigation. It 
 
 ```
 adnota/
-├── index.html      # Single-page document, markup only
-├── styles.css      # All styling — design tokens, layout, components, animations
-├── main.js         # JavaScript — scroll reveal, hero demo loop, upvote logic, tweaks API
-├── uploads/        # Static asset uploads (images, etc.)
-├── README.md       # This file
-└── todo.md         # Lightweight task tracker
+├── public/             # Everything that ships to the browser (Cloudflare Pages build output dir)
+│   ├── index.html      # Single-page document, markup only
+│   ├── styles.css      # Site styling — design tokens, layout, components, animations
+│   ├── demo.css        # Hero browser-mockup styles, ported from the extension under .hero-mockup scope
+│   ├── main.js         # Site JS — scroll reveal, upvote logic, tweaks API
+│   ├── demo.js         # Hero demo loop — sequenced 4-tool animation in the browser mockup
+│   └── favicon.svg
+├── random/             # Scratch — design exploration files, not deployed
+├── README.md           # This file (not deployed)
+└── todo.md             # Lightweight task tracker (not deployed)
 ```
 
-The project was intentionally split from a monolithic single-file `index.html` into this three-file structure for maintainability and AI-assisted development.
+Anything outside `public/` is invisible to the live site — it stays in the repo for reference but is never uploaded by Cloudflare. Drop scratch files, design experiments, and notes anywhere outside `public/` without worrying about leaking them.
 
 ---
 
@@ -110,34 +114,26 @@ The mockup also shows the Adnota "A" chip (`.ext-chip`) in the browser toolbar, 
 
 ---
 
-## JavaScript (`main.js`)
+## JavaScript
 
-Three logical sections:
+Two files, split by concern:
 
-### 1. Scroll Reveal (`IntersectionObserver`)
+### `main.js` — site behavior
+
+#### 1. Scroll Reveal (`IntersectionObserver`)
 ```js
 const obs = new IntersectionObserver(entries => { ... }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 ```
 Triggers the `.in` class on `.reveal` elements once 12% of the element is visible. Unobserves after triggering (one-shot animation).
 
-### 2. Hero Demo Loop (`runHeroDemo`)
-A sequential animation loop using nested `setTimeout` calls. Phases:
-- **1s** — Highlight fades in
-- **2s** — Sticky note appears
-- **3s** — Rectangle annotation appears
-- **4s** — Ad flashes red hover state, then fades to erased
-- **7.5s** — All states reset, loop restarts after 800ms pause
-
-Kicks off on `window.load` with a 1.2s initial delay to let the page settle.
-
-### 3. Feature Board Upvotes (`upvote`)
+#### 2. Feature Board Upvotes (`upvote`)
 Each `.fr-item` row calls `upvote(this)` on click. The function:
 - Increments the vote counter text
 - Sets arrow and count color to `--accent`
 - Sets `el.onclick = null` to enforce one vote per session
 
-### 4. Tweaks API (disabled)
+#### 3. Tweaks API (dormant)
 The `#tweaks-panel` (currently commented out in HTML) provides a runtime customization panel used during development / design review. It is activated via `postMessage` from a parent frame (`__activate_edit_mode`). It supports:
 - Accent color override (live CSS variable update)
 - Hero tagline text
@@ -145,6 +141,14 @@ The `#tweaks-panel` (currently commented out in HTML) provides a runtime customi
 - Feature board visibility toggle
 
 The tweaks config is read from `<script id="__tweaks__" type="application/json">` in the `<head>`. This system is wired but dormant in production.
+
+### `demo.js` — hero browser mockup loop
+
+A sequenced 4-tool demo (~13s per cycle): eraser → resizer → sticky → marker. Drives both the dock's active-tool state and the `data-accent` color so the mockup's border and glow match whichever tool is "in use." Kicks off on `window.load` with a short settle delay.
+
+### `demo.css` — hero mockup styles
+
+Ported from the extension's own dock/UI CSS (`webrevise/content/dock.css`, `webrevise/lib/vellumUI.css`) so the mockup looks identical to the real product. Every rule is scoped under `.hero-mockup` to prevent the extension's class names (`#vellum-dock`, `.vellum-dock-tool`, etc.) from leaking into the rest of the site.
 
 ---
 
@@ -197,15 +201,28 @@ The footer notes `v1 · Chrome Extension · MV3`. The actual extension is a sepa
 
 ## Development
 
-Open `index.html` directly in a browser — no build step needed.
+Open `public/index.html` directly in a browser — no build step needed.
 
-For live reload during development, use any static server:
+For live reload during development, run any static server from the `public/` directory:
 ```bash
 # Python
-python3 -m http.server
+python3 -m http.server --directory public
 
 # Node
-npx serve .
+npx serve public
 ```
 
-Edits to `styles.css` or `main.js` take effect on browser refresh. The `#tweaks-panel` can be enabled by uncommenting the HTML block in `index.html` (lines 577–595) and ensuring `tweaks-panel` has `display: block`.
+Edits to any file under `public/` take effect on browser refresh. The `#tweaks-panel` can be enabled by uncommenting its HTML block in `public/index.html` and ensuring `tweaks-panel` has `display: block`.
+
+---
+
+## Deployment
+
+Hosted on **Cloudflare Pages**, deployed automatically on push to `main`.
+
+- **Build command**: none
+- **Build output directory**: `public`
+
+Only files inside `public/` are uploaded and served. The repo root (`README.md`, `todo.md`, `random/`, etc.) is invisible to visitors — those URLs return 404 on the live site. This means scratch files, drafts, and design experiments can live freely in the repo without leaking to the public.
+
+To add a new asset (image, font, etc.), drop it inside `public/` and reference it with a path relative to the site root (e.g. `<img src="og-image.png">` for `public/og-image.png`).
