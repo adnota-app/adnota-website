@@ -43,8 +43,22 @@ function setCaption(text, accent) {
   caption.classList.add('visible');
 }
 
+/* Visibility-aware wait: if the tab is hidden when the timer fires, hold
+   until it's visible again before resolving. Keeps the loop in sync with
+   what the user is actually looking at — no phases burned in background
+   tabs (and no battery either). */
 function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => {
+    setTimeout(() => {
+      if (!document.hidden) return resolve();
+      const onVisible = () => {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', onVisible);
+        resolve();
+      };
+      document.addEventListener('visibilitychange', onVisible);
+    }, ms);
+  });
 }
 
 function typeInto(el, text, cps = 16) {
