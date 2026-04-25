@@ -523,8 +523,9 @@ h2 {
   border: 1px solid var(--p-border);
   display: grid; place-items: center;
   margin-bottom: 20px;
-  font-size: 18px;
+  color: var(--p-color);
 }
+.pillar-icon svg { width: 22px; height: 22px; }
 
 .pillar h3 {
   font-family: var(--font-display);
@@ -867,7 +868,8 @@ mark.yellow { background: rgba(250, 204, 21, 0.55); color: inherit; padding: 1px
   text-align: center;
 }
 
-.priv-icon { font-size: 24px; margin-bottom: 12px; }
+.priv-icon { margin-bottom: 12px; color: var(--accent); display: inline-flex; }
+.priv-icon svg { width: 28px; height: 28px; }
 .priv-card h4 { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
 .priv-card p { color: var(--text-dim); font-size: 13px; line-height: 1.6; font-weight: 300; }
 
