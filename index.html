@@ -474,86 +474,17 @@
     <p style="color:var(--text-muted);font-size:16px;font-weight:300;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;">
       Adnota is pre-launch and actively seeking input. Vote on the features you want most — every vote shapes the roadmap.
     </p>
+  </div>
 
-    <div class="featureboard-card reveal">
-      <div class="featureboard-header">
-        <div class="fb-icon">💡</div>
-        <div>
-          <h3>Adnota Feature Board</h3>
-          <p>Vote · Request · Discuss</p>
-        </div>
-      </div>
-      <div class="featureboard-body">
-
-        <div class="feature-requests-list" id="fr-list">
-          <div class="fr-item" onclick="upvote(this)">
-            <div class="fr-votes">
-              <span class="fr-arrow">▲</span>
-              <span class="fr-count">24</span>
-            </div>
-            <div class="fr-content">
-              <h4>Cloud sync across devices</h4>
-              <p>Sync annotations between multiple machines via optional account</p>
-            </div>
-            <span class="fr-tag planned">planned</span>
-          </div>
-          <div class="fr-item" onclick="upvote(this)">
-            <div class="fr-votes">
-              <span class="fr-arrow">▲</span>
-              <span class="fr-count">18</span>
-            </div>
-            <div class="fr-content">
-              <h4>Export annotated page as PDF</h4>
-              <p>Print or save a redacted/highlighted version of any page</p>
-            </div>
-            <span class="fr-tag idea">idea</span>
-          </div>
-          <div class="fr-item" onclick="upvote(this)">
-            <div class="fr-votes">
-              <span class="fr-arrow">▲</span>
-              <span class="fr-count">15</span>
-            </div>
-            <div class="fr-content">
-              <h4>Broken anchor recovery UI</h4>
-              <p>Surface and re-pin annotations that couldn't be restored after page changes</p>
-            </div>
-            <span class="fr-tag wip">in progress</span>
-          </div>
-          <div class="fr-item" onclick="upvote(this)">
-            <div class="fr-votes">
-              <span class="fr-arrow">▲</span>
-              <span class="fr-count">11</span>
-            </div>
-            <div class="fr-content">
-              <h4>Firefox support</h4>
-              <p>Bring Adnota to Firefox and other Chromium-based browsers</p>
-            </div>
-            <span class="fr-tag idea">idea</span>
-          </div>
-          <div class="fr-item" onclick="upvote(this)">
-            <div class="fr-votes">
-              <span class="fr-arrow">▲</span>
-              <span class="fr-count">9</span>
-            </div>
-            <div class="fr-content">
-              <h4>Annotation search across all sites</h4>
-              <p>Search by content — find the page where you highlighted "privacy"</p>
-            </div>
-            <span class="fr-tag idea">idea</span>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-          <a href="https://featurebase.app" target="_blank" rel="noopener noreferrer" class="fb-cta">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
-            Submit a Feature Request
-          </a>
-          <a href="#" class="btn-secondary" style="font-size:15px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            View on GitHub
-          </a>
-        </div>
-      </div>
+  <div class="reveal" style="max-width:1100px;margin:24px auto 0;">
+    <div style="border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 0 60px var(--accent-glow);">
+      <iframe
+        id="fr-list"
+        src="https://adnota.featurebase.app?theme=dark"
+        style="width:100%;height:880px;border:0;background:var(--surface);display:block;"
+        loading="lazy"
+        title="Adnota Feature Board"
+      ></iframe>
     </div>
   </div>
 </section>
