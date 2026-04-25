@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Adnota — Icon Ideas v4 (transparent outer)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08080f;
+      --surface: #0f0f1a;
+      --surface2: #16162a;
+      --border: rgba(124,58,237,0.18);
+      --blue: #3b82f6;
+      --text: #f1eefb;
+      --muted: #8a8aa3;
+      --dim: #5a5a73;
+      --font: 'Lato', system-ui, sans-serif;
+      --mono: 'DM Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      padding: 48px;
+      min-height: 100vh;
+    }
+    h1 { font-weight: 900; font-size: 32px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .lede { color: var(--muted); max-width: 760px; margin: 0 0 8px; font-size: 15px; }
+    .label { font-family: var(--mono); font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .card h2 { font-size: 16px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.005em; }
+    .card .desc { color: var(--muted); font-size: 13px; margin: 0 0 16px; min-height: 36px; }
+
+    .preview-row {
+      display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;
+      padding: 16px;
+      border-radius: 10px;
+    }
+    .preview-row.dark { background: var(--surface2); border: 1px solid rgba(255,255,255,0.04); margin-bottom: 8px; }
+    .preview-row.light { background: #f0f0f2; border: 1px solid #d8d8e0; }
+    .preview { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .preview svg { display: block; }
+    .preview .size { font-family: var(--mono); font-size: 10px; }
+    .preview-row.dark .size { color: var(--dim); }
+    .preview-row.light .size { color: #6a6a78; }
+
+    .icon-A { font-family: 'Lato', -apple-system, system-ui, sans-serif; font-weight: 900; }
+    .badge { color: var(--blue); font-family: var(--mono); font-size: 11px; font-weight: 400; }
+  </style>
+</head>
+<body>
+
+  <h1>Adnota — icon v4</h1>
+  <p class="lede">Transparent outer (so the icon adapts to whatever Chrome theme the user has). Top three are riffs on the resize-frame direction; bottom two are completely different metaphors since you said you're not feeling the box.</p>
+  <p class="label">Each card shows dark Chrome theme on top, light Chrome theme below</p>
+
+  <div class="grid">
+
+    <!-- =================================================================
+         1 — Square midpoint handles (your direct request)
+         ================================================================= -->
+    <div class="card">
+      <h2>1. Mid-line square pips <span class="badge">requested</span></h2>
+      <p class="desc">Same as v3 but transparent outer and the four pips moved from corners to the midpoint of each side. Reads more like a "selection in motion."</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1a-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g1a-128)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="59" y="9"   width="10" height="10" fill="#3b82f6"/>
+            <rect x="59" y="109" width="10" height="10" fill="#3b82f6"/>
+            <rect x="9"   y="59" width="10" height="10" fill="#3b82f6"/>
+            <rect x="109" y="59" width="10" height="10" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1a-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g1a-48)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="59" y="9"   width="10" height="10" fill="#3b82f6"/>
+            <rect x="59" y="109" width="10" height="10" fill="#3b82f6"/>
+            <rect x="9"   y="59" width="10" height="10" fill="#3b82f6"/>
+            <rect x="109" y="59" width="10" height="10" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1a-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="url(#g1a-32)"/>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <rect x="14.5" y="2"  width="3" height="3" fill="#3b82f6"/>
+            <rect x="14.5" y="27" width="3" height="3" fill="#3b82f6"/>
+            <rect x="2"  y="14.5" width="3" height="3" fill="#3b82f6"/>
+            <rect x="27" y="14.5" width="3" height="3" fill="#3b82f6"/>
+            <text x="16" y="23" text-anchor="middle" class="icon-A" font-size="19" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1a-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="url(#g1a-16)"/>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.6" text-anchor="middle" class="icon-A" font-size="10" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1b-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g1b-128)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="59" y="9"   width="10" height="10" fill="#3b82f6"/>
+            <rect x="59" y="109" width="10" height="10" fill="#3b82f6"/>
+            <rect x="9"   y="59" width="10" height="10" fill="#3b82f6"/>
+            <rect x="109" y="59" width="10" height="10" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1c-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g1c-48)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="59" y="9"   width="10" height="10" fill="#3b82f6"/>
+            <rect x="59" y="109" width="10" height="10" fill="#3b82f6"/>
+            <rect x="9"   y="59" width="10" height="10" fill="#3b82f6"/>
+            <rect x="109" y="59" width="10" height="10" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1d-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="url(#g1d-32)"/>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <rect x="14.5" y="2"  width="3" height="3" fill="#3b82f6"/>
+            <rect x="14.5" y="27" width="3" height="3" fill="#3b82f6"/>
+            <rect x="2"  y="14.5" width="3" height="3" fill="#3b82f6"/>
+            <rect x="27" y="14.5" width="3" height="3" fill="#3b82f6"/>
+            <text x="16" y="23" text-anchor="middle" class="icon-A" font-size="19" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1e-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="url(#g1e-16)"/>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.6" text-anchor="middle" class="icon-A" font-size="10" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         2 — Pill mid-line handles
+         These pill shapes match the real extension's resizer-handle styles
+         (rz-left/rz-right are 8x28 vertical pills, rz-top/rz-bottom are
+         28x8 horizontal pills). Most "authentic" to the extension UI.
+         ================================================================= -->
+    <div class="card">
+      <h2>2. Mid-line pill handles <span class="badge">matches real resizer</span></h2>
+      <p class="desc">Same idea, but pips become pill-shaped (vertical on left/right, horizontal on top/bottom) — exactly the shape the real extension's resize handles use.</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2a-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g2a-128)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <!-- top/bottom horizontal pills -->
+            <rect x="50" y="10" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="50" y="110" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <!-- left/right vertical pills -->
+            <rect x="10" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <rect x="110" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2b-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g2b-48)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="50" y="10" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="50" y="110" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="10" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <rect x="110" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2c-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="url(#g2c-32)"/>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <rect x="12" y="2.2" width="8" height="2.4" rx="1.2" fill="#3b82f6"/>
+            <rect x="12" y="27.4" width="8" height="2.4" rx="1.2" fill="#3b82f6"/>
+            <rect x="2.2" y="12" width="2.4" height="8" rx="1.2" fill="#3b82f6"/>
+            <rect x="27.4" y="12" width="2.4" height="8" rx="1.2" fill="#3b82f6"/>
+            <text x="16" y="23" text-anchor="middle" class="icon-A" font-size="19" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2d-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="url(#g2d-16)"/>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.6" text-anchor="middle" class="icon-A" font-size="10" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2e-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g2e-128)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="50" y="10" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="50" y="110" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="10" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <rect x="110" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2f-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="100" height="100" fill="url(#g2f-48)"/>
+            <rect x="14" y="14" width="100" height="100" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <rect x="50" y="10" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="50" y="110" width="28" height="8" rx="4" fill="#3b82f6"/>
+            <rect x="10" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <rect x="110" y="50" width="8" height="28" rx="4" fill="#3b82f6"/>
+            <text x="64" y="89" text-anchor="middle" class="icon-A" font-size="74" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2g-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="url(#g2g-32)"/>
+            <rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <rect x="12" y="2.2" width="8" height="2.4" rx="1.2" fill="#3b82f6"/>
+            <rect x="12" y="27.4" width="8" height="2.4" rx="1.2" fill="#3b82f6"/>
+            <rect x="2.2" y="12" width="2.4" height="8" rx="1.2" fill="#3b82f6"/>
+            <rect x="27.4" y="12" width="2.4" height="8" rx="1.2" fill="#3b82f6"/>
+            <text x="16" y="23" text-anchor="middle" class="icon-A" font-size="19" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2h-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="url(#g2h-16)"/>
+            <rect x="1.75" y="1.75" width="12.5" height="12.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.6" text-anchor="middle" class="icon-A" font-size="10" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         3 — No handles, just dashed frame
+         ================================================================= -->
+    <div class="card">
+      <h2>3. No handles <span class="badge">minimalist</span></h2>
+      <p class="desc">Drop the pips entirely — the dashed frame around the gradient is enough. Cleanest at small sizes; might be the one that doesn't feel "busy".</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3a-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="10" y="10" width="108" height="108" fill="url(#g3a-128)"/>
+            <rect x="10" y="10" width="108" height="108" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="64" y="91" text-anchor="middle" class="icon-A" font-size="80" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3b-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="10" y="10" width="108" height="108" fill="url(#g3b-48)"/>
+            <rect x="10" y="10" width="108" height="108" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="64" y="91" text-anchor="middle" class="icon-A" font-size="80" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3c-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="2.5" y="2.5" width="27" height="27" fill="url(#g3c-32)"/>
+            <rect x="2.5" y="2.5" width="27" height="27" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <text x="16" y="23.5" text-anchor="middle" class="icon-A" font-size="20" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3d-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.25" y="1.25" width="13.5" height="13.5" fill="url(#g3d-16)"/>
+            <rect x="1.25" y="1.25" width="13.5" height="13.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.8" text-anchor="middle" class="icon-A" font-size="11" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3e-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="10" y="10" width="108" height="108" fill="url(#g3e-128)"/>
+            <rect x="10" y="10" width="108" height="108" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="64" y="91" text-anchor="middle" class="icon-A" font-size="80" fill="#fff">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3f-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="10" y="10" width="108" height="108" fill="url(#g3f-48)"/>
+            <rect x="10" y="10" width="108" height="108" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="64" y="91" text-anchor="middle" class="icon-A" font-size="80" fill="#fff">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3g-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="2.5" y="2.5" width="27" height="27" fill="url(#g3g-32)"/>
+            <rect x="2.5" y="2.5" width="27" height="27" fill="none" stroke="#3b82f6" stroke-width="1.25" stroke-dasharray="2.2 1.6"/>
+            <text x="16" y="23.5" text-anchor="middle" class="icon-A" font-size="20" fill="#fff">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3h-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.25" y="1.25" width="13.5" height="13.5" fill="url(#g3h-16)"/>
+            <rect x="1.25" y="1.25" width="13.5" height="13.5" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1"/>
+            <text x="8" y="11.8" text-anchor="middle" class="icon-A" font-size="11" fill="#fff">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         4 — A with highlight slash through it (no resize box at all)
+         The annotation gesture as the icon. Drops the resize-tool framing.
+         ================================================================= -->
+    <div class="card">
+      <h2>4. A with highlight slash <span class="badge">different metaphor</span></h2>
+      <p class="desc">Skip the resize-box framing entirely — gradient A on transparent, with a tilted pink highlight stroke through it. Reads as "annotate" not "resize".</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4a-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="62" width="100" height="22" fill="rgba(236,72,153,0.7)" transform="rotate(-6 64 73)"/>
+            <text x="64" y="98" text-anchor="middle" class="icon-A" font-size="112" fill="url(#g4a-128)">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4b-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="62" width="100" height="22" fill="rgba(236,72,153,0.7)" transform="rotate(-6 64 73)"/>
+            <text x="64" y="98" text-anchor="middle" class="icon-A" font-size="112" fill="url(#g4b-48)">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4c-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3" y="15.5" width="26" height="6" fill="rgba(236,72,153,0.7)" transform="rotate(-6 16 18.5)"/>
+            <text x="16" y="25" text-anchor="middle" class="icon-A" font-size="28" fill="url(#g4c-32)">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4d-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1" y="7.5" width="14" height="3.5" fill="rgba(236,72,153,0.75)" transform="rotate(-6 8 9.25)"/>
+            <text x="8" y="12.5" text-anchor="middle" class="icon-A" font-size="14" fill="url(#g4d-16)">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4e-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="62" width="100" height="22" fill="rgba(236,72,153,0.7)" transform="rotate(-6 64 73)"/>
+            <text x="64" y="98" text-anchor="middle" class="icon-A" font-size="112" fill="url(#g4e-128)">A</text>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4f-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="62" width="100" height="22" fill="rgba(236,72,153,0.7)" transform="rotate(-6 64 73)"/>
+            <text x="64" y="98" text-anchor="middle" class="icon-A" font-size="112" fill="url(#g4f-48)">A</text>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4g-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3" y="15.5" width="26" height="6" fill="rgba(236,72,153,0.7)" transform="rotate(-6 16 18.5)"/>
+            <text x="16" y="25" text-anchor="middle" class="icon-A" font-size="28" fill="url(#g4g-32)">A</text>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g4h-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1" y="7.5" width="14" height="3.5" fill="rgba(236,72,153,0.75)" transform="rotate(-6 8 9.25)"/>
+            <text x="8" y="12.5" text-anchor="middle" class="icon-A" font-size="14" fill="url(#g4h-16)">A</text>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         5 — A with hand-drawn underline
+         Just an A with an annotation underline beneath it. Most minimal.
+         ================================================================= -->
+    <div class="card">
+      <h2>5. A with annotation underline <span class="badge">different metaphor</span></h2>
+      <p class="desc">Just a gradient A with a hand-drawn pink stroke underneath, like someone underlined it on paper. Most minimal of the bunch.</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5a-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="64" y="86" text-anchor="middle" class="icon-A" font-size="100" fill="url(#g5a-128)">A</text>
+            <path d="M22 104 Q 50 96, 80 104 T 110 102"
+                  fill="none" stroke="#ec4899" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5b-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="64" y="86" text-anchor="middle" class="icon-A" font-size="100" fill="url(#g5b-48)">A</text>
+            <path d="M22 104 Q 50 96, 80 104 T 110 102"
+                  fill="none" stroke="#ec4899" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5c-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="16" y="22.5" text-anchor="middle" class="icon-A" font-size="26" fill="url(#g5c-32)">A</text>
+            <path d="M5 27 Q 12 25, 19 27 T 27.5 26.5"
+                  fill="none" stroke="#ec4899" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5d-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="8" y="11.5" text-anchor="middle" class="icon-A" font-size="14" fill="url(#g5d-16)">A</text>
+            <path d="M2.4 13.6 Q 6 12.6, 9.5 13.6 T 13.8 13.4"
+                  fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5e-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="64" y="86" text-anchor="middle" class="icon-A" font-size="100" fill="url(#g5e-128)">A</text>
+            <path d="M22 104 Q 50 96, 80 104 T 110 102"
+                  fill="none" stroke="#ec4899" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5f-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="64" y="86" text-anchor="middle" class="icon-A" font-size="100" fill="url(#g5f-48)">A</text>
+            <path d="M22 104 Q 50 96, 80 104 T 110 102"
+                  fill="none" stroke="#ec4899" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5g-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="16" y="22.5" text-anchor="middle" class="icon-A" font-size="26" fill="url(#g5g-32)">A</text>
+            <path d="M5 27 Q 12 25, 19 27 T 27.5 26.5"
+                  fill="none" stroke="#ec4899" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5h-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="8" y="11.5" text-anchor="middle" class="icon-A" font-size="14" fill="url(#g5h-16)">A</text>
+            <path d="M2.4 13.6 Q 6 12.6, 9.5 13.6 T 13.8 13.4"
+                  fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="label" style="margin-top:48px;">If none of these click, tell me what's wrong (too techy? too plain? wrong colors?) and I'll iterate.</p>
+
+</body>
+</html>

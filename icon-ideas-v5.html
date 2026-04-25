@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Adnota — Icon Ideas v5 (cursor + box)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08080f;
+      --surface: #0f0f1a;
+      --surface2: #16162a;
+      --border: rgba(124,58,237,0.18);
+      --blue: #3b82f6;
+      --text: #f1eefb;
+      --muted: #8a8aa3;
+      --dim: #5a5a73;
+      --font: 'Lato', system-ui, sans-serif;
+      --mono: 'DM Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      padding: 48px;
+    }
+    h1 { font-weight: 900; font-size: 32px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .lede { color: var(--muted); max-width: 760px; margin: 0 0 8px; font-size: 15px; }
+    .label { font-family: var(--mono); font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .card h2 { font-size: 16px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.005em; }
+    .card .desc { color: var(--muted); font-size: 13px; margin: 0 0 16px; min-height: 36px; }
+    .preview-row {
+      display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;
+      padding: 16px;
+      border-radius: 10px;
+    }
+    .preview-row.dark { background: var(--surface2); border: 1px solid rgba(255,255,255,0.04); margin-bottom: 8px; }
+    .preview-row.light { background: #f0f0f2; border: 1px solid #d8d8e0; }
+    .preview { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .preview svg { display: block; }
+    .preview .size { font-family: var(--mono); font-size: 10px; }
+    .preview-row.dark .size { color: var(--dim); }
+    .preview-row.light .size { color: #6a6a78; }
+    .icon-A { font-family: 'Lato', -apple-system, system-ui, sans-serif; font-weight: 900; }
+    .badge { color: var(--blue); font-family: var(--mono); font-size: 11px; font-weight: 400; }
+  </style>
+</head>
+<body>
+
+  <h1>Adnota — icon v5 (cursor + box)</h1>
+  <p class="lede">Three takes on "A + cursor + selection box". The cursor turns a static UI element into an action — it says "user is doing something on the page" rather than just "this is a tool".</p>
+  <p class="label">Each card shows dark Chrome theme on top, light below</p>
+
+  <div class="grid">
+
+    <!-- =================================================================
+         1 — Cursor in BOTTOM-RIGHT of dashed marquee, A inside
+         The classic "you just selected this" composition. Cursor tip points
+         up-left into the box, like the user's hand finishing a marquee drag.
+         ================================================================= -->
+    <div class="card">
+      <h2>1. Cursor finishing marquee <span class="badge">most product-like</span></h2>
+      <p class="desc">Dashed blue selection box around a gradient A, white cursor at the bottom-right corner pointing back into the box — like the user just dragged a selection.</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <!-- gradient fill of selection -->
+            <rect x="14" y="14" width="92" height="92" fill="url(#v51-128)"/>
+            <!-- dashed selection box -->
+            <rect x="14" y="14" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <!-- A -->
+            <text x="60" y="84" text-anchor="middle" class="icon-A" font-size="70" fill="#fff">A</text>
+            <!-- cursor: tip at (96,96), pointing NW -->
+            <path d="M 92 88 L 92 122 L 100 114 L 106 124 L 111 121 L 105 111 L 115 110 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="92" height="92" fill="url(#v51-48)"/>
+            <rect x="14" y="14" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="60" y="84" text-anchor="middle" class="icon-A" font-size="70" fill="#fff">A</text>
+            <path d="M 92 88 L 92 122 L 100 114 L 106 124 L 111 121 L 105 111 L 115 110 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3" y="3" width="22" height="22" fill="url(#v51-32)"/>
+            <rect x="3" y="3" width="22" height="22" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="2 1.5"/>
+            <text x="14" y="20.5" text-anchor="middle" class="icon-A" font-size="17" fill="#fff">A</text>
+            <path d="M 22 21 L 22 30.5 L 24.2 28.2 L 25.8 31 L 27.1 30.2 L 25.5 27.5 L 28 27.2 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.8" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.5" y="1.5" width="11" height="11" fill="url(#v51-16)"/>
+            <rect x="1.5" y="1.5" width="11" height="11" fill="none" stroke="#3b82f6" stroke-width="0.85" stroke-dasharray="1.3 1"/>
+            <text x="7" y="10.5" text-anchor="middle" class="icon-A" font-size="9" fill="#fff">A</text>
+            <path d="M 11 11 L 11 15.5 L 12.1 14.4 L 12.9 15.7 L 13.6 15.3 L 12.8 14 L 14 13.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51L-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="92" height="92" fill="url(#v51L-128)"/>
+            <rect x="14" y="14" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="60" y="84" text-anchor="middle" class="icon-A" font-size="70" fill="#fff">A</text>
+            <path d="M 92 88 L 92 122 L 100 114 L 106 124 L 111 121 L 105 111 L 115 110 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51L-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="14" y="14" width="92" height="92" fill="url(#v51L-48)"/>
+            <rect x="14" y="14" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="60" y="84" text-anchor="middle" class="icon-A" font-size="70" fill="#fff">A</text>
+            <path d="M 92 88 L 92 122 L 100 114 L 106 124 L 111 121 L 105 111 L 115 110 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51L-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3" y="3" width="22" height="22" fill="url(#v51L-32)"/>
+            <rect x="3" y="3" width="22" height="22" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="2 1.5"/>
+            <text x="14" y="20.5" text-anchor="middle" class="icon-A" font-size="17" fill="#fff">A</text>
+            <path d="M 22 21 L 22 30.5 L 24.2 28.2 L 25.8 31 L 27.1 30.2 L 25.5 27.5 L 28 27.2 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.8" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v51L-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="1.5" y="1.5" width="11" height="11" fill="url(#v51L-16)"/>
+            <rect x="1.5" y="1.5" width="11" height="11" fill="none" stroke="#3b82f6" stroke-width="0.85" stroke-dasharray="1.3 1"/>
+            <text x="7" y="10.5" text-anchor="middle" class="icon-A" font-size="9" fill="#fff">A</text>
+            <path d="M 11 11 L 11 15.5 L 12.1 14.4 L 12.9 15.7 L 13.6 15.3 L 12.8 14 L 14 13.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         2 — Cursor at TOP-LEFT, drawing the marquee diagonally
+         Reverse direction: cursor tip starts at top-left, marquee extends
+         down-right from it. Reads as "drawing a selection right now".
+         ================================================================= -->
+    <div class="card">
+      <h2>2. Cursor drawing marquee</h2>
+      <p class="desc">Cursor at top-left, dashed selection box extending down-right from it. Captures the action of pulling out a selection — feels mid-gesture.</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="22" y="22" width="92" height="92" fill="url(#v52-128)"/>
+            <rect x="22" y="22" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="68" y="93" text-anchor="middle" class="icon-A" font-size="72" fill="#fff">A</text>
+            <!-- cursor: tip at (12,12), pointing NW -->
+            <path d="M 8 6 L 8 40 L 16 32 L 22 42 L 27 39 L 21 29 L 31 28 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="22" y="22" width="92" height="92" fill="url(#v52-48)"/>
+            <rect x="22" y="22" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="68" y="93" text-anchor="middle" class="icon-A" font-size="72" fill="#fff">A</text>
+            <path d="M 8 6 L 8 40 L 16 32 L 22 42 L 27 39 L 21 29 L 31 28 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="6" y="6" width="22" height="22" fill="url(#v52-32)"/>
+            <rect x="6" y="6" width="22" height="22" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="2 1.5"/>
+            <text x="17" y="23.5" text-anchor="middle" class="icon-A" font-size="17" fill="#fff">A</text>
+            <path d="M 1.8 1.5 L 1.8 11 L 4 8.7 L 5.5 11.6 L 6.9 10.8 L 5.3 8 L 7.6 7.8 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.8" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="11" height="11" fill="url(#v52-16)"/>
+            <rect x="3.5" y="3.5" width="11" height="11" fill="none" stroke="#3b82f6" stroke-width="0.85" stroke-dasharray="1.3 1"/>
+            <text x="9" y="12.4" text-anchor="middle" class="icon-A" font-size="9" fill="#fff">A</text>
+            <path d="M 1 1 L 1 5.5 L 2.1 4.4 L 2.9 5.7 L 3.6 5.3 L 2.8 4 L 4 3.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52L-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="22" y="22" width="92" height="92" fill="url(#v52L-128)"/>
+            <rect x="22" y="22" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="68" y="93" text-anchor="middle" class="icon-A" font-size="72" fill="#fff">A</text>
+            <path d="M 8 6 L 8 40 L 16 32 L 22 42 L 27 39 L 21 29 L 31 28 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52L-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="22" y="22" width="92" height="92" fill="url(#v52L-48)"/>
+            <rect x="22" y="22" width="92" height="92" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="68" y="93" text-anchor="middle" class="icon-A" font-size="72" fill="#fff">A</text>
+            <path d="M 8 6 L 8 40 L 16 32 L 22 42 L 27 39 L 21 29 L 31 28 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52L-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="6" y="6" width="22" height="22" fill="url(#v52L-32)"/>
+            <rect x="6" y="6" width="22" height="22" fill="none" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="2 1.5"/>
+            <text x="17" y="23.5" text-anchor="middle" class="icon-A" font-size="17" fill="#fff">A</text>
+            <path d="M 1.8 1.5 L 1.8 11 L 4 8.7 L 5.5 11.6 L 6.9 10.8 L 5.3 8 L 7.6 7.8 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.8" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v52L-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <rect x="3.5" y="3.5" width="11" height="11" fill="url(#v52L-16)"/>
+            <rect x="3.5" y="3.5" width="11" height="11" fill="none" stroke="#3b82f6" stroke-width="0.85" stroke-dasharray="1.3 1"/>
+            <text x="9" y="12.4" text-anchor="middle" class="icon-A" font-size="9" fill="#fff">A</text>
+            <path d="M 1 1 L 1 5.5 L 2.1 4.4 L 2.9 5.7 L 3.6 5.3 L 2.8 4 L 4 3.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- =================================================================
+         3 — Cursor on top of A, no separate box
+         The cursor itself sits on the A, with a small marquee ring around
+         the click point. More compact, A is the hero.
+         ================================================================= -->
+    <div class="card">
+      <h2>3. Cursor clicking A</h2>
+      <p class="desc">Bigger A as the hero, smaller cursor sitting on the A's right shoulder with a tiny click-marquee around its tip. Most letter-forward.</p>
+
+      <div class="preview-row dark">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="56" y="100" text-anchor="middle" class="icon-A" font-size="118" fill="url(#v53-128)">A</text>
+            <!-- click-point marquee -->
+            <rect x="78" y="48" width="32" height="32" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <!-- cursor: tip at (88,58), pointing NW -->
+            <path d="M 86 54 L 86 86 L 93 79 L 99 89 L 104 86 L 98 76 L 108 75 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="56" y="100" text-anchor="middle" class="icon-A" font-size="118" fill="url(#v53-48)">A</text>
+            <rect x="78" y="48" width="32" height="32" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <path d="M 86 54 L 86 86 L 93 79 L 99 89 L 104 86 L 98 76 L 108 75 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="14" y="25" text-anchor="middle" class="icon-A" font-size="29" fill="url(#v53-32)">A</text>
+            <rect x="19.5" y="12" width="8" height="8" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1.1"/>
+            <path d="M 21.5 13.5 L 21.5 21.5 L 23.3 19.7 L 24.7 22.2 L 26 21.5 L 24.5 19 L 26.7 18.8 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.7" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="6.5" y="13.6" text-anchor="middle" class="icon-A" font-size="16" fill="url(#v53-16)">A</text>
+            <path d="M 10 6 L 10 11.5 L 11.1 10.4 L 11.9 11.7 L 12.6 11.3 L 11.8 10 L 13 9.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+
+      <div class="preview-row light">
+        <div class="preview">
+          <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53L-128" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="56" y="100" text-anchor="middle" class="icon-A" font-size="118" fill="url(#v53L-128)">A</text>
+            <rect x="78" y="48" width="32" height="32" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <path d="M 86 54 L 86 86 L 93 79 L 99 89 L 104 86 L 98 76 L 108 75 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">128</span>
+        </div>
+        <div class="preview">
+          <svg width="48" height="48" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53L-48" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="56" y="100" text-anchor="middle" class="icon-A" font-size="118" fill="url(#v53L-48)">A</text>
+            <rect x="78" y="48" width="32" height="32" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <path d="M 86 54 L 86 86 L 93 79 L 99 89 L 104 86 L 98 76 L 108 75 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="size">48</span>
+        </div>
+        <div class="preview">
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53L-32" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="14" y="25" text-anchor="middle" class="icon-A" font-size="29" fill="url(#v53L-32)">A</text>
+            <rect x="19.5" y="12" width="8" height="8" fill="none" stroke="#3b82f6" stroke-width="0.9" stroke-dasharray="1.4 1.1"/>
+            <path d="M 21.5 13.5 L 21.5 21.5 L 23.3 19.7 L 24.7 22.2 L 26 21.5 L 24.5 19 L 26.7 18.8 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.7" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">32</span>
+        </div>
+        <div class="preview">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="v53L-16" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs>
+            <text x="6.5" y="13.6" text-anchor="middle" class="icon-A" font-size="16" fill="url(#v53L-16)">A</text>
+            <path d="M 10 6 L 10 11.5 L 11.1 10.4 L 11.9 11.7 L 12.6 11.3 L 11.8 10 L 13 9.85 Z"
+                  fill="#fff" stroke="#08080f" stroke-width="0.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="size">16</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="label" style="margin-top:48px;">Each card: dark Chrome (top) + light Chrome (bottom). At 16px on #3, the marquee around the cursor drops since it'd be unreadable.</p>
+
+</body>
+</html>
