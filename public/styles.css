@@ -70,6 +70,10 @@ nav {
   color: var(--text);
 }
 
+.nav-cluster {
+  display: flex; align-items: center; gap: 24px;
+}
+
 .nav-links {
   display: flex; align-items: center; gap: 32px;
 }
@@ -81,6 +85,33 @@ nav {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--text); }
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 38px; height: 38px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+.nav-toggle:hover { border-color: rgba(124,58,237,0.4); }
+.nav-toggle span {
+  display: block;
+  position: absolute;
+  left: 9px; right: 9px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+.nav-toggle span:nth-child(1) { top: 12px; }
+.nav-toggle span:nth-child(2) { top: 18px; }
+.nav-toggle span:nth-child(3) { top: 24px; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { top: 18px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { top: 18px; transform: rotate(-45deg); }
 
 .nav-cta {
   background: var(--accent);
@@ -1017,9 +1048,43 @@ footer {
 .tw-row input:focus { outline: none; border-color: var(--accent); }
 .tw-row input[type="checkbox"] { accent-color: var(--accent); }
 
+/* Long unbreakable mono tokens (e.g. chrome.storage.local) must wrap in
+   narrow grid tracks, otherwise they expand their column past 1fr. */
+.priv-card code { overflow-wrap: anywhere; word-break: break-word; }
+
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
-  .nav-links { display: none; }
+  .nav-cluster { gap: 12px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    z-index: 99;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(8,8,15,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 20px 12px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-links.is-open {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-links a {
+    padding: 14px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 15px;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-cta { padding: 7px 14px; font-size: 13px !important; }
+
   .hero { padding: 100px 24px 60px; }
   section { padding: 64px 24px; }
   .pillars-inner { grid-template-columns: 1fr; }
@@ -1028,7 +1093,20 @@ footer {
   .features-header { grid-template-columns: 1fr; gap: 24px; }
   .steps { grid-template-columns: 1fr; }
   .steps::before { display: none; }
-  .privacy-strip { grid-template-columns: 1fr 1fr; }
+
+  /* Knowledge-base: collapse 2-col → 1-col, hide the dense
+     badge column inside each mockup row so the row fits on phones. */
+  .kb-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .kb-rows > div { padding: 10px 14px !important; }
+  .kb-rows > div > div:nth-child(3) { display: none !important; }
+
+  /* minmax(0,1fr) prevents the chrome.storage.local <code> token
+     from blowing out the right column. */
+  .privacy-strip { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+
+  .founder-card { padding: 28px 22px !important; }
+
   footer { flex-direction: column; gap: 32px; text-align: center; }
+  .footer-links { flex-direction: column; gap: 14px; }
   .footer-note { text-align: center; }
 }

@@ -51,11 +51,16 @@
     <img class="logo-mark" src="favicon.svg" alt="Adnota">
     <span>Adnota</span>
   </a>
-  <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
-    <a href="#requests">Feature Requests</a>
+  <div class="nav-cluster">
+    <div class="nav-links" id="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#requests">Feature Requests</a>
+    </div>
     <a href="#requests" class="nav-cta">Vote on features</a>
+    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -324,7 +329,7 @@
 
 <!-- YOUR WEB KNOWLEDGE BASE -->
 <section style="padding-top:80px;padding-bottom:80px;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <div class="kb-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
     <div>
       <div class="section-label">Your Personal Knowledge Base</div>
       <h2 style="font-family:Lato" class="text-gradient">Every annotation.<br>Every site.<br>All in one place.</h2>
@@ -353,7 +358,7 @@
         <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-muted)"><strong style="color:var(--text)">33</strong> Pages</span>
         <span style="margin-left:auto;font-size:10px;font-family:var(--font-mono);color:var(--text-dim)">338 KB / 10 MB &middot; 3%</span>
       </div>
-      <div>
+      <div class="kb-rows">
         <div style="display:flex;align-items:center;gap:10px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:24px;height:24px;border-radius:5px;background:var(--surface2);border:1px solid var(--border);display:grid;place-items:center;font-size:9px;font-weight:700;color:var(--text-dim);flex-shrink:0;">A</div>
           <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:500;color:var(--text);">arstechnica.com</div><div style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono);">1 page &middot; 1h ago</div></div>
@@ -470,7 +475,7 @@
 <!-- FOUNDER NOTE -->
 <section style="padding-top:40px;padding-bottom:60px;">
   <div class="reveal" style="max-width:640px;margin:0 auto;padding:0 24px;">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 40px;">
+    <div class="founder-card" style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 40px;">
       <div style="font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px;">From the founder</div>
       <p style="color:var(--text-muted);font-size:16px;line-height:1.75;font-weight:300;margin-bottom:14px;">
         I built Adnota because every other annotation extension wanted my email, my account, my data. I just wanted to erase a sidebar and have it stay erased.
