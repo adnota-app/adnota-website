@@ -12,18 +12,7 @@ todo:
   highest-leverage launch-day fix. Even a screenshot of the hero with the H1 baked in is enough. 
 
 - Mobile nav vanishes entirely. Per your README, nav links are hidden on mobile with no hamburger. That means no nav, no "Get Early Access" CTA, nothing — on the device where most launch-day traffic lands (Twitter, Reddit, HN are mobile-heavy). At minimum, keep the nav-cta button visible on mobile. 
-
-- No pricing answer anywhere. Free? Freemium? Paid later? On a launch page, this is the second question every visitor asks (after "what is it"). Add a one-line answer somewhere visible — even "Free during beta" closes the loop. 
-
-- No social proof anywhere — no founder note, no "I built this because…", no quotes from any beta user, no Product Hunt badge. For a launch-day pre-Web-Store product, the founder story is your social proof. One paragraph somewhere ("I was tired of…") is worth more than another feature card.   
-
-- Emoji icons (🔒 ⚡ 🎨 🔐 ☁️  👁) clash with the polished CSS-art feature cards. Your feature cards punch above their weight; the emoji pillars look like a placeholder next to them. SVG icons in --accent would unify the brand.
-
-- SEO title is brand-first. Try "Adnota — Annotate, Highlight & Erase Any Webpage · Chrome Extension" to capture intent searches. 
-
-- Footer needs Privacy Policy + Terms + Contact links. Chrome Web Store often requires a privacy policy URL anyway. 
-
-- No FAQ. "Will it work on [bank/SPA/iframe]?", "What if I uninstall?", "Does it sync between my devices?" — these are the questions that block the install.  
+ 
 
 IMAGE PREVIEW FOR SHARING TODO:
 ⏺ Done. Here's what's now in place and what you still need to do.
@@ -62,3 +51,15 @@ done:
 - breaking into separate files
 - update readme with implementation details
 - update BROWSER MOCKUP to match actual extension (real dock, ported selection overlays, sequenced tool demo + captions)
+
+- No pricing answer anywhere. Free? Freemium? Paid later? On a launch page, this is the second question every visitor asks (after "what is it"). Add a one-line answer somewhere visible — even "Free during beta" closes the loop. 
+
+- No social proof anywhere — no founder note, no "I built this because…", no quotes from any beta user, no Product Hunt badge. For a launch-day pre-Web-Store product, the founder story is your social proof. One paragraph somewhere ("I was tired of…") is worth more than another feature card.   
+
+- Emoji icons (🔒 ⚡ 🎨 🔐 ☁️  👁) clash with the polished CSS-art feature cards. Your feature cards punch above their weight; the emoji pillars look like a placeholder next to them. SVG icons in --accent would unify the brand.
+
+- SEO title is brand-first. Try "Adnota — Annotate, Highlight & Erase Any Webpage · Chrome Extension" to capture intent searches. 
+
+- Footer needs Privacy Policy + Terms + Contact links. Chrome Web Store often requires a privacy policy URL anyway. 
+
+- ~~No FAQ. "Will it work on [bank/SPA/iframe]?", "What if I uninstall?", "Does it sync between my devices?" — these are the questions that block the install. ~~
