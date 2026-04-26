@@ -2,6 +2,8 @@
 
 > **Adnota** is a Chrome Extension (MV3) that lets users annotate, erase, highlight, draw, and resize any webpage — persistently, privately, and without cloud storage. This repo is the **public marketing/landing page** for that extension.
 
+NOTE: launch locally using: `ruby -run -e httpd public -p 8080`
+
 ---
 
 ## Overview
