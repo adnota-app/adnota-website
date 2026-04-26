@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Adnota</title>
+<meta name="description" content="Adnota's privacy policy. The short version: we collect nothing. Your annotations stay in your browser, on your machine.">
+<meta name="theme-color" content="#08080f">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://adnota.app/privacy">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  .doc-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 140px 32px 80px;
+  }
+  .doc-page h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .doc-tldr {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 40px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .doc-tldr strong {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .doc-page h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .doc-page p, .doc-page li {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .doc-page p { margin-bottom: 14px; }
+  .doc-page ul { padding-left: 22px; margin-bottom: 14px; }
+  .doc-page li { margin-bottom: 6px; }
+  .doc-page a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .doc-page code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--surface2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--text);
+  }
+  .doc-page strong { color: var(--text); font-weight: 500; }
+</style>
+
+</head>
+<body style="font-family: Lato;">
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">A</div>
+    <span>Adnota</span>
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#how">How it works</a>
+    <a href="/#requests">Feature Requests</a>
+    <a href="/#requests" class="nav-cta">Get Early Access</a>
+  </div>
+</nav>
+
+<main class="doc-page">
+
+  <h1>Privacy Policy</h1>
+  <div class="doc-meta">Last updated: April 25, 2026</div>
+
+  <div class="doc-tldr">
+    <strong>The short version</strong>
+    Adnota collects nothing. Your annotations live in your browser, on your machine. We don't have servers that see them, accounts that own them, or analytics that track anything.
+  </div>
+
+  <h2>What this policy covers</h2>
+  <p>This policy describes how Adnota — both the Chrome extension and the marketing site at <code>adnota.app</code> — handles information. It's intentionally short because there isn't much to describe.</p>
+
+  <h2>What the extension collects</h2>
+  <p><strong>Nothing leaves your device.</strong> The Adnota extension does not transmit any data to us, to third parties, or to any server. There is no account system, no login, and no telemetry.</p>
+  <p>The extension stores the following <strong>locally on your machine</strong>, in your browser's <code>chrome.storage.local</code>:</p>
+  <ul>
+    <li>The annotations you create (highlights, sticky notes, drawings, erasures, resize rules)</li>
+    <li>The list of sites you've annotated</li>
+    <li>Your extension preferences and settings</li>
+  </ul>
+  <p>This data never leaves your browser. We cannot see it, retrieve it, or back it up. If you uninstall the extension or clear your browser storage, this data is gone.</p>
+
+  <h2>What the marketing site collects</h2>
+  <p>The site at <code>adnota.app</code> does not run analytics, telemetry, or tracking pixels. There are no cookies set by us. Standard server logs (IP address, request path, timestamp) may be retained by our hosting provider (Cloudflare Pages) for operational purposes; we do not access or analyze them.</p>
+
+  <h2>Third-party services</h2>
+  <p>Visiting the marketing site causes your browser to load a small number of third-party resources, each subject to that party's own privacy policy:</p>
+  <ul>
+    <li><strong>Google Fonts</strong> — fonts are loaded from <code>fonts.googleapis.com</code>. Google may log the request. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</li>
+    <li><strong>Featurebase</strong> — the feature-request board on the homepage is an embedded iframe served by Featurebase. If you interact with it (vote, post), your interaction is governed by <a href="https://featurebase.app/privacy">Featurebase's privacy policy</a>.</li>
+    <li><strong>Cloudflare</strong> — the site is hosted on Cloudflare Pages. Cloudflare may collect standard request logs. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</li>
+  </ul>
+
+  <h2>Permissions the extension requests</h2>
+  <p>The extension requests Chrome permissions only as needed to function — the ability to read and modify pages you visit (so it can annotate and erase), and access to <code>chrome.storage.local</code> (so annotations persist). No permissions are used to transmit data off your device.</p>
+
+  <h2>Children's privacy</h2>
+  <p>Adnota is not directed at children under 13 and we do not knowingly collect data from anyone — including children — because we don't collect data at all.</p>
+
+  <h2>Your rights and controls</h2>
+  <p>Because we don't collect or store your data on our servers, there is nothing for us to delete, export, or correct on your behalf. You retain full control:</p>
+  <ul>
+    <li><strong>To delete your data:</strong> uninstall the extension, or use the wipe controls inside the extension's options page.</li>
+    <li><strong>To export your data:</strong> use the export feature inside the extension (if available in your version) — your data is local, so it's yours to take.</li>
+    <li><strong>To stop the marketing site from loading anything:</strong> simply close the tab.</li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>If we change this policy, we'll update the "last updated" date at the top of this page. Material changes will be noted here. Continued use of the extension or site after a change means you accept the updated terms.</p>
+
+  <h2>Contact</h2>
+  <p>Questions, concerns, or just want to verify any of the above? Email <a href="mailto:privacy@adnota.app">privacy@adnota.app</a>. The extension's source is also inspectable in Chrome DevTools — you're welcome to verify any of these claims directly.</p>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      <div class="logo-mark">A</div>
+      <span style="font-family:var(--font-display);font-weight:700;font-size:17px;">Adnota</span>
+    </div>
+    <div class="footer-tagline">The Persistent Canvas · Annotate the web, your way.</div>
+  </div>
+  <div class="footer-links">
+    <a href="/#features">Features</a>
+    <a href="/#how">How it works</a>
+    <a href="/#requests">Feature Requests</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:hello@adnota.app">Contact</a>
+  </div>
+  <div class="footer-note">
+    Built with ♥ for the open web<br>
+    <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">v1 · Chrome Extension · MV3</span>
+  </div>
+</footer>
+
+</body>
+</html>
