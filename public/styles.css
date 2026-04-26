@@ -563,7 +563,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .features-desc { color: var(--text-muted); font-size: 16px; line-height: 1.75; font-weight: 300; }
