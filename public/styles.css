@@ -665,14 +665,14 @@ h2 {
   background: rgba(239, 68, 68, 0.15);
 }
 .vis-eraser-badge {
-  position: absolute;
-  top: 2px; right: 2px;
-  font-family: var(--font-mono);
-  font-size: 7px;
-  background: #0f0f0f;
-  color: #e4e4e7;
-  padding: 1px 4px;
-  border-radius: 2px;
+  position: absolute; top: -8px; right: -8px;
+  font-family: var(--font-mono); font-size: 7px;
+  background: #ef4444; color: white;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 1.3;
 }
 .vis-eraser-hud {
   position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
@@ -760,8 +760,9 @@ mark.pink   { background: rgba(236, 72, 153, 0.35); color: inherit; padding: 1px
 mark.yellow { background: rgba(250, 204, 21, 0.55); color: inherit; padding: 1px 0; border-radius: 2px; }
 .vis-draw {
   position: absolute;
-  right: 8px;
-  top: 8px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   opacity: 0.92;
 }
