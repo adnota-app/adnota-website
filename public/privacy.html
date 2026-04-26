@@ -88,14 +88,19 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <div class="logo-mark">A</div>
+    <img class="logo-mark" src="favicon.svg" alt="Adnota">
     <span>Adnota</span>
   </a>
-  <div class="nav-links">
-    <a href="/#features">Features</a>
-    <a href="/#how">How it works</a>
-    <a href="/#requests">Feature Requests</a>
-    <a href="/#requests" class="nav-cta">Get Early Access</a>
+  <div class="nav-cluster">
+    <div class="nav-links" id="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/#requests">Feature Requests</a>
+    </div>
+    <a href="/#requests" class="nav-cta">Vote on features</a>
+    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -159,10 +164,10 @@
 <footer>
   <div>
     <div class="footer-logo">
-      <div class="logo-mark">A</div>
+      <img class="logo-mark" src="favicon.svg" alt="Adnota">
       <span style="font-family:var(--font-display);font-weight:700;font-size:17px;">Adnota</span>
     </div>
-    <div class="footer-tagline">The Persistent Canvas · Annotate the web, your way.</div>
+    <div class="footer-tagline">The Persistent Canvas · Make any webpage yours.</div>
   </div>
   <div class="footer-links">
     <a href="/#features">Features</a>
@@ -173,10 +178,11 @@
     <a href="mailto:hello@adnota.app">Contact</a>
   </div>
   <div class="footer-note">
-    Built with ♥ for the open web<br>
+    Built with ♥ Annotate freely.<br>
     <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">v1 · Chrome Extension · MV3</span>
   </div>
 </footer>
 
+<script src="main.js"></script>
 </body>
 </html>
