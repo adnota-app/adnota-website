@@ -61,17 +61,7 @@ nav {
 
 .logo-mark {
   width: 32px; height: 32px;
-  background: linear-gradient(135deg, var(--accent), #d946ef);
-  border-radius: 9px;
-  display: grid; place-items: center;
-  font-family: 'Lato', sans-serif;
-  font-weight: 900;
-  font-size: 18px;
-  color: white;
-  box-shadow: 0 0 20px var(--accent-glow);
-  letter-spacing: -0.5px;
-  position: relative;
-  overflow: visible;
+  filter: drop-shadow(0 0 10px var(--accent-glow));
 }
 
 .nav-logo span {
@@ -242,13 +232,8 @@ h1 {
   color: rgba(255,255,255,0.35);
 }
 .ext-chip {
-  width: 20px; height: 20px; border-radius: 5px;
-  background: linear-gradient(135deg, var(--accent), #d946ef);
-  display: grid; place-items: center;
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 10px;
-  color: white;
-  box-shadow: 0 0 8px var(--accent-glow);
+  width: 20px; height: 20px;
+  filter: drop-shadow(0 0 4px var(--accent-glow));
 }
 
 .browser-body {
