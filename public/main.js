@@ -4,6 +4,22 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+/* ── MOBILE NAV TOGGLE ── */
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.getElementById('nav-links');
+if (navToggle && navLinks) {
+  const setOpen = (open) => {
+    navToggle.setAttribute('aria-expanded', String(open));
+    navLinks.classList.toggle('is-open', open);
+  };
+  navToggle.addEventListener('click', () => {
+    setOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+}
+
 /* ── UPVOTE ── */
 function upvote(el) {
   const count = el.querySelector('.fr-count');
