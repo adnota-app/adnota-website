@@ -61,7 +61,7 @@ nav {
 
 .logo-mark {
   width: 32px; height: 32px;
-  background: linear-gradient(135deg, var(--accent), oklch(0.55 0.25 315));
+  background: linear-gradient(135deg, var(--accent), #d946ef);
   border-radius: 9px;
   display: grid; place-items: center;
   font-family: 'Lato', sans-serif;
@@ -243,7 +243,7 @@ h1 {
 }
 .ext-chip {
   width: 20px; height: 20px; border-radius: 5px;
-  background: linear-gradient(135deg, var(--accent), oklch(0.55 0.25 315));
+  background: linear-gradient(135deg, var(--accent), #d946ef);
   display: grid; place-items: center;
   font-family: var(--font-display);
   font-weight: 800; font-size: 10px;
