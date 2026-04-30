@@ -85,10 +85,14 @@ function positionRectAroundH1() {
   const textBox = range.getBoundingClientRect();
   const padX = 10;
   const padY = 5;
-  rect.style.top    = (textBox.top    - articleBox.top  - padY) + 'px';
-  rect.style.left   = (textBox.left   - articleBox.left - padX) + 'px';
-  rect.style.width  = (textBox.width  + padX * 2) + 'px';
-  rect.style.height = (textBox.height + padY * 2) + 'px';
+  /* Bounding rects are post-transform; rect.style values are layout px.
+     On mobile .browser-wrap is CSS-scaled, so divide visible deltas by
+     the live scale (visible width / layout width) to write correct values. */
+  const scale = articleBox.width / article.offsetWidth || 1;
+  rect.style.top    = ((textBox.top    - articleBox.top)  / scale - padY) + 'px';
+  rect.style.left   = ((textBox.left   - articleBox.left) / scale - padX) + 'px';
+  rect.style.width  = (textBox.width  / scale + padX * 2) + 'px';
+  rect.style.height = (textBox.height / scale + padY * 2) + 'px';
   rect.style.right  = 'auto';
 }
 
