@@ -1053,6 +1053,133 @@ footer {
    narrow grid tracks, otherwise they expand their column past 1fr. */
 .priv-card code { overflow-wrap: anywhere; word-break: break-word; }
 
+/* ── SCRATCH PAD SECTION ──
+   Mockup of the in-page floating panel that aggregates HIGHLIGHT + NOTE
+   text per URL. Austere by design: no per-snippet borders, no source chips,
+   just text + optional muted #tag chips. Mirrors the real extension UI. */
+
+.scratch-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.scratch-pad-mock {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+  background: #0c0c16;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.04);
+  font-family: var(--font-display);
+}
+
+.scratch-pad-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  gap: 12px;
+}
+
+.scratch-pad-filters {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.scratch-pill {
+  color: var(--text-dim);
+  white-space: nowrap;
+  letter-spacing: 0.005em;
+  position: relative;
+  padding-bottom: 4px;
+}
+.scratch-pill.is-active {
+  color: var(--accent);
+}
+.scratch-pill.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.scratch-pill-dot { color: var(--text-dim); margin: 0 1px; }
+.scratch-pill.is-active .scratch-pill-dot { color: var(--accent); opacity: 0.6; }
+
+.scratch-pad-actions {
+  display: flex;
+  gap: 14px;
+  color: var(--text-dim);
+}
+.scratch-pad-actions svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.scratch-pad-body {
+  padding: 4px 0;
+  max-height: 340px;
+  overflow: hidden;
+}
+
+.scratch-snippet {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.scratch-snippet:last-child { border-bottom: none; }
+
+.scratch-snippet p {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+  white-space: pre-wrap;
+}
+.scratch-snippet p.scratch-redaction {
+  font-family: var(--font-mono);
+  letter-spacing: -0.04em;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.scratch-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.scratch-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.01em;
+}
+
+/* Soft fade at the bottom hints there are more snippets below the visible
+   slice, matching the real pad's overflow behavior. */
+.scratch-pad-fade {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(12,12,22,0), #0c0c16 85%);
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-cluster { gap: 12px; }
@@ -1094,6 +1221,12 @@ footer {
   .features-header { grid-template-columns: 1fr; gap: 24px; }
   .steps { grid-template-columns: 1fr; }
   .steps::before { display: none; }
+
+  /* Scratch-pad section: stack and shrink the mock to fit narrow viewports. */
+  .scratch-grid { grid-template-columns: 1fr; gap: 40px; }
+  .scratch-pad-mock { max-width: 100%; }
+  .scratch-pad-filters { gap: 12px; font-size: 12px; }
+  .scratch-pad-body { max-height: 320px; }
 
   /* Knowledge-base: collapse 2-col → 1-col, hide the dense
      badge column inside each mockup row so the row fits on phones. */
