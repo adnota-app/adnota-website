@@ -1150,25 +1150,6 @@ footer {
   margin: 0;
   white-space: pre-wrap;
 }
-.scratch-snippet p.scratch-redaction {
-  font-family: var(--font-mono);
-  letter-spacing: -0.04em;
-  color: var(--text);
-  opacity: 0.85;
-}
-
-.scratch-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-.scratch-tag {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text-dim);
-  letter-spacing: 0.01em;
-}
 
 /* Soft fade at the bottom hints there are more snippets below the visible
    slice, matching the real pad's overflow behavior. */
