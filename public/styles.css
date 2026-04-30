@@ -1151,16 +1151,6 @@ footer {
   white-space: pre-wrap;
 }
 
-/* Soft fade at the bottom hints there are more snippets below the visible
-   slice, matching the real pad's overflow behavior. */
-.scratch-pad-fade {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, rgba(12,12,22,0), #0c0c16 85%);
-  pointer-events: none;
-}
-
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-cluster { gap: 12px; }
