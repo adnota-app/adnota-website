@@ -1221,7 +1221,10 @@ footer {
      footprint so the caption and next section don't land in the empty
      layout box the transform leaves behind. */
   .hero-mockup {
-    --mockup-w: 760px;
+    /* Match desktop wrap width (900) so the article keeps its horizontal
+       gutter inside the body — at 760 the expanded article clamped to body
+       width and the resize outline dominated the frame. */
+    --mockup-w: 900px;
     --mockup-h: 460px;
     --mockup-scale: calc((100vw - 48px) / var(--mockup-w));
     position: relative;
