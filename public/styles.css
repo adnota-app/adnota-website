@@ -1214,4 +1214,35 @@ footer {
   footer { flex-direction: column; gap: 32px; text-align: center; }
   .footer-links { flex-direction: column; gap: 14px; }
   .footer-note { text-align: center; }
+
+  /* Hero browser mockup uses fixed pixel positions for the dock, sticky
+     note, and erase overlay — calibrated to a ≥760px wrap. Render at
+     natural size and scale-to-fit; the wrapper takes the scaled visual
+     footprint so the caption and next section don't land in the empty
+     layout box the transform leaves behind. */
+  .hero-mockup {
+    --mockup-w: 760px;
+    --mockup-h: 460px;
+    --mockup-scale: calc((100vw - 48px) / var(--mockup-w));
+    position: relative;
+    width: 100%;
+    height: calc(var(--mockup-h) * var(--mockup-scale) + 56px);
+    gap: 0;
+  }
+  .hero-mockup .browser-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: var(--mockup-w);
+    height: var(--mockup-h);
+    flex-shrink: 0;
+    transform-origin: top center;
+    transform: translateX(-50%) scale(var(--mockup-scale));
+  }
+  .hero-mockup .demo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
