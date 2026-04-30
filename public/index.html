@@ -331,6 +331,94 @@
   </div>
 </section>
 
+<!-- SCRATCH PAD -->
+<section class="scratch-section" style="padding-top:80px;padding-bottom:80px;">
+  <div class="scratch-grid">
+    <!-- CSS-art mockup of the in-page scratch pad -->
+    <div class="reveal scratch-pad-mock" aria-hidden="true">
+      <div class="scratch-pad-header">
+        <div class="scratch-pad-filters">
+          <span class="scratch-pill is-active">All <span class="scratch-pill-dot">·</span> 8</span>
+          <span class="scratch-pill">Highlights <span class="scratch-pill-dot">·</span> 6</span>
+          <span class="scratch-pill">Notes <span class="scratch-pill-dot">·</span> 2</span>
+        </div>
+        <div class="scratch-pad-actions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+      </div>
+      <div class="scratch-pad-body">
+        <div class="scratch-snippet">
+          <p>The web should be a document you can edit, not a billboard you're asked to politely consume.</p>
+          <div class="scratch-tags">
+            <span class="scratch-tag">#manifesto</span>
+            <span class="scratch-tag">#ars</span>
+          </div>
+        </div>
+        <div class="scratch-snippet">
+          <p>FuzzyAnchor scores five signals — CSS selector, tag name, text fingerprint, structure, geometry — so highlights survive layout shifts.</p>
+          <div class="scratch-tags">
+            <span class="scratch-tag">#anchoring</span>
+          </div>
+        </div>
+        <div class="scratch-snippet">
+          <p class="scratch-redaction">█████████████████████</p>
+          <div class="scratch-tags">
+            <span class="scratch-tag">#pii</span>
+          </div>
+        </div>
+        <div class="scratch-snippet">
+          <p>Capture the parts that matter, recall them without scrolling 20,000 tokens back.</p>
+        </div>
+        <div class="scratch-snippet">
+          <p>TEXT IS KING — austere on purpose. Steal this framing for the launch post.</p>
+          <div class="scratch-tags">
+            <span class="scratch-tag">#marketing</span>
+          </div>
+        </div>
+      </div>
+      <div class="scratch-pad-fade"></div>
+    </div>
+
+    <!-- Copy -->
+    <div>
+      <div class="section-label">The Scratch Pad</div>
+      <h2 style="font-family:Lato">For the long<br><span class="text-gradient">conversation.</span></h2>
+      <p style="color:var(--text-muted);font-size:16px;line-height:1.75;font-weight:300;margin-top:20px;">
+        Every highlight and note from the page you're on, side-by-side in one quiet panel. Built for <strong style="color:var(--text);font-weight:500;">ChatGPT threads</strong>, <strong style="color:var(--text);font-weight:500;">Claude conversations</strong>, and longform reads where scrolling back is the friction you're trying to escape.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:28px;">
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 8px var(--accent);margin-top:7px;"></div>
+          <div>
+            <div style="color:var(--text);font-size:14px;font-weight:600;margin-bottom:2px;">TEXT IS KING.</div>
+            <div style="color:var(--text-muted);font-size:14px;font-weight:300;line-height:1.6;">No card chrome, no source thumbnails. Just the words you saved — paragraph breaks intact.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0;box-shadow:0 0 8px var(--amber);margin-top:7px;"></div>
+          <div>
+            <div style="color:var(--text);font-size:14px;font-weight:600;margin-bottom:2px;">Slice and filter.</div>
+            <div style="color:var(--text-muted);font-size:14px;font-weight:300;line-height:1.6;">Toggle All / Highlights / Notes. Tag chips on every snippet. Filter selection sticks across pages.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 8px var(--green);margin-top:7px;"></div>
+          <div>
+            <div style="color:var(--text);font-size:14px;font-weight:600;margin-bottom:2px;">GOTO and copy.</div>
+            <div style="color:var(--text-muted);font-size:14px;font-weight:300;line-height:1.6;">Jump back to the exact spot on the page, copy any snippet, or copy them all at once.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px;">
+        <kbd style="font-family:var(--font-mono);font-size:12px;font-weight:500;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:3px 8px;color:var(--text);">p</kbd>
+        <span style="color:var(--text-muted);font-size:13px;font-weight:300;">opens the pad on any page. Drag where you want it — it stays per-site.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- YOUR WEB KNOWLEDGE BASE -->
 <section style="padding-top:80px;padding-bottom:80px;">
   <div class="kb-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
