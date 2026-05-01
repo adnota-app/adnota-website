@@ -1230,9 +1230,12 @@ footer {
   .hero-mockup {
     /* Match desktop wrap width (900) so the article keeps its horizontal
        gutter inside the body — at 760 the expanded article clamped to body
-       width and the resize outline dominated the frame. */
+       width and the resize outline dominated the frame.
+       --mockup-h is generous (540) because iOS Safari renders Georgia with
+       slightly different metrics than desktop browsers — paragraphs wrap to
+       3 lines, body grows, and a tighter wrap height clipped the dock. */
     --mockup-w: 900px;
-    --mockup-h: 460px;
+    --mockup-h: 540px;
     --mockup-scale: calc((100vw - 48px) / var(--mockup-w));
     position: relative;
     width: 100%;
@@ -1248,10 +1251,13 @@ footer {
     flex-shrink: 0;
     transform-origin: top center;
     transform: translateX(-50%) scale(var(--mockup-scale));
-    /* Match .browser-body so the unfilled bottom strip (wrap is taller than
-       body's min-height) doesn't show as a white band on mobile. */
-    background: #f4f4f5;
+    /* Flex column so .browser-body stretches to fill the remaining wrap
+       height (after the 38px chrome) — eliminates the bottom seam where
+       the wrap's white background used to peek out past the body. */
+    display: flex;
+    flex-direction: column;
   }
+  .hero-mockup .browser-body { flex: 1; }
   .hero-mockup .demo-caption {
     position: absolute;
     bottom: 0;
