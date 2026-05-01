@@ -1248,6 +1248,9 @@ footer {
     flex-shrink: 0;
     transform-origin: top center;
     transform: translateX(-50%) scale(var(--mockup-scale));
+    /* Match .browser-body so the unfilled bottom strip (wrap is taller than
+       body's min-height) doesn't show as a white band on mobile. */
+    background: #f4f4f5;
   }
   .hero-mockup .demo-caption {
     position: absolute;
