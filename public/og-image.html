@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--
+  OG card — 1200×630.
+  Open in a browser at exactly 1200×630 viewport, screenshot, save as
+  public/og-image.png. The <meta og:image> and twitter:image in index.html
+  both point to /og-image.png.
+
+  Self-contained on purpose: no link to styles.css so nav/grain/scroll
+  rules can't leak in. Colors/fonts mirror the live site by hand.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adnota OG card — screenshot at 1200×630</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #08080f;
+    --accent: #7c3aed;
+    --accent-soft: rgba(124,58,237,0.12);
+    --accent-glow: rgba(124,58,237,0.35);
+    --border: rgba(124,58,237,0.18);
+    --pink: #ec4899;
+    --text: #f5f3fa;
+    --text-muted: #9b97ad;
+    --font-display: 'Lato', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    position: relative;
+  }
+
+  /* Match .hero-mesh from styles.css. */
+  .mesh {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(124,58,237,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(236,72,153,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 25% at 80% 60%, rgba(59,130,246,0.07) 0%, transparent 60%);
+  }
+
+  .card {
+    position: relative;
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 64px 72px;
+    gap: 48px;
+  }
+
+  /* ── LEFT: brand + headline + sub ── */
+  .left { display: flex; flex-direction: column; gap: 24px; }
+
+  .brand {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 8px;
+  }
+  .brand-mark {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+    display: grid; place-items: center;
+    color: #fff; font-weight: 900; font-size: 24px;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+  }
+  .brand-name {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.01em;
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 16px 6px 10px;
+    font-family: var(--font-mono);
+    font-size: 13px; font-weight: 500;
+    color: #c4b5fd;
+    width: fit-content;
+  }
+  .badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 76px;
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    background: linear-gradient(160deg, var(--text) 30%, #c4a8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sub {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    font-weight: 400;
+    max-width: 460px;
+  }
+
+  /* ── RIGHT: browser mockup snapshot ── */
+  .right { display: flex; align-items: center; justify-content: center; }
+
+  .browser {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(124,58,237,0.25);
+    box-shadow:
+      0 30px 70px rgba(0,0,0,0.55),
+      0 0 90px -10px rgba(124,58,237,0.45),
+      0 0 0 1px rgba(124,58,237,0.12);
+    background: #fff;
+    transform: rotate(-1.5deg);
+  }
+
+  .b-chrome {
+    background: linear-gradient(180deg, #1e1e24 0%, #17171d 100%);
+    height: 32px;
+    display: flex; align-items: center;
+    padding: 0 12px; gap: 7px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .b-dot { width: 8px; height: 8px; border-radius: 50%; opacity: 0.55; }
+  .b-red { background: #ff5f57; }
+  .b-amber { background: #febc2e; }
+  .b-green { background: #28c840; }
+  .b-bar {
+    flex: 1; margin: 0 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    height: 18px;
+    display: flex; align-items: center;
+    padding: 0 8px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+  }
+  .b-chip {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+    display: grid; place-items: center;
+    color: #fff; font-weight: 900; font-size: 10px;
+  }
+
+  .b-body {
+    background: #f4f4f5;
+    padding: 22px 26px 20px;
+    position: relative;
+    min-height: 290px;
+    font-family: Georgia, serif;
+    color: #1a1a1a;
+  }
+
+  .article {
+    max-width: 340px;
+    position: relative;
+  }
+  .a-site {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 13px; font-weight: 900;
+    color: #111;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .a-h1 {
+    font-size: 17px; font-weight: 700;
+    color: #111; line-height: 1.3;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+    padding: 2px 6px;
+    margin-left: -6px;
+  }
+  /* Pink rect annotation around the h1 — mirrors .anno-rect end state. */
+  .a-h1::after {
+    content: '';
+    position: absolute; inset: -3px -2px;
+    border: 2px solid var(--pink);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+  .a-byline {
+    font-size: 9px; color: #888;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+  }
+  .a-p {
+    font-size: 11px; line-height: 1.7;
+    color: #333; margin-bottom: 8px;
+  }
+  /* Yellow highlight — matches .anno-highlight.visible */
+  .a-mark { background: rgba(250, 204, 21, 0.55); border-radius: 2px; }
+
+  /* Sticky note in the upper right of the body, mirroring .anno-sticky. */
+  .sticky {
+    position: absolute;
+    top: 18px; right: 22px;
+    width: 152px; min-height: 78px;
+    background: #FBE6A1;
+    color: #7A5B15;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .sticky-head {
+    height: 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 8px;
+    border-bottom: 1px solid rgba(122, 91, 21, 0.15);
+    font-size: 8px; font-weight: 600;
+  }
+  .sticky-body {
+    padding: 8px 10px;
+    font-size: 10px; font-weight: 500;
+    line-height: 1.35;
+  }
+
+  /* Dock — mirrors #vellum-dock end state. */
+  .dock {
+    position: absolute;
+    bottom: 12px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 15, 26, 0.92);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    border-radius: 10px;
+    padding: 5px 8px;
+    display: inline-flex; gap: 5px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+  }
+  .dock-tool {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    color: rgba(255,255,255,0.55);
+  }
+  .dock-tool.active {
+    background: rgba(124, 58, 237, 0.25);
+    color: #c4b5fd;
+    box-shadow: 0 0 0 1px rgba(124,58,237,0.5), 0 0 12px rgba(124,58,237,0.4);
+  }
+  .dock-tool svg { width: 11px; height: 11px; }
+  .dock-logo {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #7c3aed, #c026d3);
+    display: grid; place-items: center;
+    color: #fff; font-weight: 900; font-size: 11px;
+  }
+
+  /* ── helper: visible 1200×630 frame in dev (remove for screenshot) ── */
+  /* Uncomment to verify size when capturing manually. */
+  /* body { outline: 2px dashed #f0f; } */
+</style>
+</head>
+<body>
+  <div class="mesh"></div>
+  <div class="card">
+
+    <div class="left">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div class="brand-name">Adnota</div>
+      </div>
+
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Free · Chrome Web Store
+      </div>
+
+      <h1>Annotate and<br>edit the web.</h1>
+
+      <p class="sub">
+        Erase distractions, highlight what matters, drop notes.
+        Persistent across visits — and never leaves your machine.
+      </p>
+    </div>
+
+    <div class="right">
+      <div class="browser">
+        <div class="b-chrome">
+          <span class="b-dot b-red"></span>
+          <span class="b-dot b-amber"></span>
+          <span class="b-dot b-green"></span>
+          <div class="b-bar">arstechnica.com/gadgets/2026/04/mark-it-up</div>
+          <div class="b-chip">A</div>
+        </div>
+        <div class="b-body">
+          <div class="article">
+            <div class="a-site">ARS TECHNICA</div>
+            <div class="a-h1">Mark it up. Block it out.</div>
+            <div class="a-byline">April 19, 2026 · 5 min read</div>
+            <p class="a-p">For years, browsers have been read-only. You visit a page, you consume it, you close the tab.</p>
+            <p class="a-p">A new generation of extensions is pushing back. <span class="a-mark">They let you annotate, erase, and reshape any page.</span></p>
+          </div>
+
+          <div class="sticky">
+            <div class="sticky-head">
+              <span>04/19/26</span>
+              <span>✕</span>
+            </div>
+            <div class="sticky-body">Follow up on this!</div>
+          </div>
+
+          <div class="dock">
+            <div class="dock-logo">A</div>
+            <div class="dock-tool" title="eraser">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+            </div>
+            <div class="dock-tool" title="sticky">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/></svg>
+            </div>
+            <div class="dock-tool active" title="marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="dock-tool" title="resizer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
