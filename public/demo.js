@@ -4,6 +4,7 @@
    and glow match whichever tool is "in use" right now. */
 
 const dock = document.getElementById('vellum-dock');
+const browserWrap = document.getElementById('hero-browser');
 const article = document.querySelector('.hero-mockup .fake-article');
 const highlight = document.getElementById('demo-highlight');
 const sticky = document.getElementById('demo-sticky');
@@ -26,6 +27,7 @@ const CAPTION_COLOR = {
   resizer:   '#3b82f6',
   sticky:    '#f59e0b',
   highlight: '#a78bfa',
+  persist:   '#22c55e',
 };
 
 function setActive(toolId, accent) {
@@ -170,14 +172,14 @@ function stripState() {
 
 async function runLoop() {
   stripState();
-  await wait(1000);
+  await wait(800);
 
   /* Eraser — select the ad (red outline + dimension badge), then remove it. */
   setActive('eraser', 'eraser');
   setCaption('Erase noise', 'eraser');
   await wait(700);
   eraseTarget.classList.add('anno-erase-hover');
-  await wait(1450);
+  await wait(1200);
   eraseTarget.classList.add('erased');
   eraseTarget.classList.remove('anno-erase-hover');
   await wait(900);
@@ -217,11 +219,20 @@ async function runLoop() {
   scribble.classList.add('visible');
   await wait(1100);
 
-  /* Linger with all 4 tool results visible so the viewer can absorb the
-     final annotated state, then loop — stripState() at the top of runLoop
-     triggers the CSS transitions to unwind. */
+  /* Closing beat — fake a browser refresh. Article body + every visible
+     annotation fades together while the chrome's progress bar sweeps; when
+     it completes, the page restores with the annotations already in place.
+     Demonstrates the persistence pillar instead of just stating it. */
   setActive(null);
-  await wait(1500);
+  await wait(400);
+  setCaption('Persists across reloads', 'persist');
+  browserWrap.classList.add('reloading');
+  await wait(750);
+  browserWrap.classList.remove('reloading');
+  await wait(1200);
+
+  setCaption(null);
+  await wait(500);
   runLoop();
 }
 
