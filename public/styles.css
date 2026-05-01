@@ -302,10 +302,20 @@ h1 {
 .anno-highlight {
   background: transparent;
   border-radius: 2px;
-  transition: background 0.3s;
+  /* opacity transitions alongside background so the highlight participates
+     in the reload fade-out/restore sweep. */
+  transition: background 0.3s, opacity 0.28s;
 }
 .anno-highlight.visible {
   background: rgba(250, 204, 21, 0.55);
+}
+
+/* Article body + masthead get an opacity transition so they can fade with
+   the rest of the mockup during the reload simulation, then fade back in
+   together when the .reloading class is dropped. */
+.fake-body-content,
+.fake-site-header {
+  transition: opacity 0.28s ease-out;
 }
 .anno-erase-target {
   position: absolute; right: 12px; top: 24px; bottom: 24px; width: 180px;
@@ -487,6 +497,39 @@ h1 {
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+/* Reload sweep — emulates a browser refresh. The progress bar is a 2px
+   sliver pinned right under the chrome, sweeping 0 → 100% over 700ms while
+   the page contents and visible annotations fade out together. When the
+   .reloading class is dropped, base transitions on each element bring them
+   back already-placed — proving "annotations persist across reloads"
+   instead of just claiming it in copy. */
+.reload-progress {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--pink) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 200ms ease-out;
+}
+.browser-wrap.reloading .reload-progress {
+  opacity: 1;
+  width: 100%;
+  transition: width 700ms ease-out, opacity 100ms ease-in;
+}
+.browser-wrap.reloading .fake-body-content,
+.browser-wrap.reloading .fake-site-header,
+.browser-wrap.reloading .anno-highlight.visible,
+.browser-wrap.reloading .anno-sticky.visible,
+.browser-wrap.reloading .anno-rect.visible,
+.browser-wrap.reloading .anno-scribble.visible {
+  opacity: 0;
+  transition: opacity 220ms ease-in;
 }
 
 /* ── SECTIONS ── */
