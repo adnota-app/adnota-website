@@ -234,38 +234,67 @@
     line-height: 1.35;
   }
 
-  /* Dock — mirrors #vellum-dock end state. */
+  /* Dock — mirrors #vellum-dock from demo.css. Marker tool shown active
+     since the snapshot is the "Highlight and Paint" end state, so the
+     accent variables resolve to the highlight (purple) palette. */
   .dock {
     position: absolute;
     bottom: 12px; left: 50%;
     transform: translateX(-50%);
-    background: rgba(15, 15, 26, 0.92);
-    border: 1px solid rgba(124, 58, 237, 0.4);
+    display: flex; align-items: center;
+    padding: 6px 10px;
+    min-height: 42px;
+    background: rgba(15, 15, 15, 0.92);
+    border: 1px solid rgba(124, 58, 237, 0.55); /* highlight accent */
     border-radius: 10px;
-    padding: 5px 8px;
-    display: inline-flex; gap: 5px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .dock-drag {
+    color: #525264;
+    font-size: 18px;
+    letter-spacing: -1.5px;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    padding: 0 4px;
+  }
+  .dock-logo {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(124, 58, 237, 0.28);
+    color: #c084fc;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .dock-tools {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-left: 8px;
   }
   .dock-tool {
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    display: grid; place-items: center;
-    color: rgba(255,255,255,0.55);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: transparent;
   }
+  .dock-tool svg {
+    width: 14px; height: 14px;
+    fill: none;
+    stroke: #94a3b8;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* Active marker — purple ring + glow, icon switches to purple. */
   .dock-tool.active {
-    background: rgba(124, 58, 237, 0.25);
-    color: #c4b5fd;
-    box-shadow: 0 0 0 1px rgba(124,58,237,0.5), 0 0 12px rgba(124,58,237,0.4);
+    border-color: rgba(124, 58, 237, 0.7);
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
   }
-  .dock-tool svg { width: 11px; height: 11px; }
-  .dock-logo {
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    background: linear-gradient(135deg, #7c3aed, #c026d3);
-    display: grid; place-items: center;
-    color: #fff; font-weight: 900; font-size: 11px;
-  }
+  .dock-tool.active svg { stroke: #c084fc; }
 
   /* ── helper: visible 1200×630 frame in dev (remove for screenshot) ── */
   /* Uncomment to verify size when capturing manually. */
@@ -322,18 +351,24 @@
           </div>
 
           <div class="dock">
+            <span class="dock-drag">⡇</span>
             <div class="dock-logo">A</div>
-            <div class="dock-tool" title="eraser">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
-            </div>
-            <div class="dock-tool" title="sticky">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/></svg>
-            </div>
-            <div class="dock-tool active" title="marker">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <div class="dock-tool" title="resizer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            <div class="dock-tools">
+              <div class="dock-tool" title="eraser">
+                <svg viewBox="0 0 24 24"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+              </div>
+              <div class="dock-tool" title="sticky">
+                <svg viewBox="0 0 24 24"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/><polyline points="15 3 15 9 21 9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+              </div>
+              <div class="dock-tool active" title="marker">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div class="dock-tool" title="resizer">
+                <svg viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+              </div>
+              <div class="dock-tool" title="vis">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
             </div>
           </div>
         </div>
