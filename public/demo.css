@@ -206,6 +206,23 @@
   stroke: var(--tool-color, #c084fc);
 }
 
+/* Tool-change ripple — spawned in setActive(), self-removes on animationend.
+   Grows from the 28px button outward in the tool's accent color. */
+.hero-mockup .vellum-dock-tool .tool-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--tool-color, #c084fc);
+  opacity: 0.35;
+  pointer-events: none;
+  animation: tool-ripple 520ms ease-out forwards;
+}
+
+@keyframes tool-ripple {
+  from { transform: scale(1);    opacity: 0.35; }
+  to   { transform: scale(2.2);  opacity: 0;    }
+}
+
 /* Per-tool accent for the idle row buttons */
 .hero-mockup .vellum-dock-tool[data-accent="eraser"]    { --tool-color: #ef4444; --tool-glow: rgba(239, 68, 68, 0.3); }
 .hero-mockup .vellum-dock-tool[data-accent="sticky"]    { --tool-color: #f59e0b; --tool-glow: rgba(245, 158, 11, 0.3); }
