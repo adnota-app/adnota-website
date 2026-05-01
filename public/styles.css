@@ -1231,9 +1231,10 @@ footer {
     /* Match desktop wrap width (900) so the article keeps its horizontal
        gutter inside the body — at 760 the expanded article clamped to body
        width and the resize outline dominated the frame.
-       --mockup-h is generous (540) because iOS Safari renders Georgia with
-       slightly different metrics than desktop browsers — paragraphs wrap to
-       3 lines, body grows, and a tighter wrap height clipped the dock. */
+       --mockup-h is generous (540) because iOS WebKit (Safari + Chrome —
+       Chrome on iOS is forced to WebKit) renders Georgia with slightly
+       different metrics than desktop browsers — paragraphs wrap to 3 lines,
+       body grows, and a tighter wrap height clipped the dock. */
     --mockup-w: 900px;
     --mockup-h: 540px;
     --mockup-scale: calc((100vw - 48px) / var(--mockup-w));
