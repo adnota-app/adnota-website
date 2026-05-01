@@ -1197,8 +1197,11 @@ footer {
   .steps { grid-template-columns: 1fr; }
   .steps::before { display: none; }
 
-  /* Scratch-pad section: stack and shrink the mock to fit narrow viewports. */
+  /* Scratch-pad section: stack and shrink the mock to fit narrow viewports.
+     Reorder so the section copy ("For the long conversation") leads and the
+     mockup follows — sets context before the visual on small screens. */
   .scratch-grid { grid-template-columns: 1fr; gap: 40px; }
+  .scratch-grid > .scratch-pad-mock { order: 2; }
   .scratch-pad-mock { max-width: 100%; }
   .scratch-pad-filters { gap: 12px; font-size: 12px; }
   .scratch-pad-body { max-height: 320px; }
