@@ -72,7 +72,7 @@ function typeInto(el, text, cps = 16) {
     const step = () => {
       el.textContent = text.slice(0, ++i);
       if (i >= text.length) return resolve();
-      setTimeout(step, 1000 / cps);
+      setTimeout(step, 700 / cps);
     };
     step();
   });
@@ -211,7 +211,7 @@ async function runLoop() {
   setCaption('Highlight and Paint', 'highlight');
   await wait(700);
   highlight.classList.add('visible');
-  await wait(700);
+  await wait(900);
   positionRectAroundH1();
   rect.classList.add('visible');
   await wait(900);
@@ -223,13 +223,13 @@ async function runLoop() {
      annotation fades together while the chrome's progress bar sweeps; when
      it completes, the page restores with the annotations already in place.
      Demonstrates the persistence pillar instead of just stating it. */
-  setActive(null);
-  await wait(400);
-  setCaption('Persists across reloads', 'persist');
-  browserWrap.classList.add('reloading');
-  await wait(750);
-  browserWrap.classList.remove('reloading');
-  await wait(1200);
+  // setActive(null);
+  // await wait(400);
+  // setCaption('Persists across reloads', 'persist');
+  // browserWrap.classList.add('reloading');
+  // await wait(750);
+  // browserWrap.classList.remove('reloading');
+  // await wait(1200);
 
   setCaption(null);
   await wait(500);
