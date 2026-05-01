@@ -342,16 +342,20 @@ h1 {
   border: 2px solid #ef4444 !important;
   background: rgba(239, 68, 68, 0.15) !important;
 }
-.anno-resize-hover {
+/* Outline + handles wrap .fake-body-content (paragraphs only), not the
+   whole article — the Resizer phase only operates on the body content,
+   so the masthead/headline/byline shouldn't appear inside the selection. */
+.fake-body-content { position: relative; }
+.fake-article.anno-resize-hover .fake-body-content {
   outline: 2px dashed #3b82f6;
   outline-offset: 2px;
   border-radius: 2px;
 }
 
 /* Resizer selection handles — ported from webrevise/content/resizer.css.
-   Children of .fake-article; hidden (opacity 0) until parent has .anno-resize-hover.
-   Class names are `resizer-*` to avoid colliding with the feature-card
-   `.resize-handle` styles elsewhere in this stylesheet. */
+   Children of .fake-body-content; hidden (opacity 0) until .fake-article
+   has .anno-resize-hover. Class names are `resizer-*` to avoid colliding
+   with the feature-card `.resize-handle` styles elsewhere in this sheet. */
 .resizer-handle,
 .resizer-reset {
   position: absolute;
