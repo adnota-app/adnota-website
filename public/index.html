@@ -106,24 +106,29 @@
         <div class="fake-site-header">
           <span>ARS TECHNICA</span>
         </div>
-        <div class="fake-h1">Mark it up. Block it out. Make it yours.</div>
-        <div class="fake-byline">April 19, 2026 · 5 min read</div>
-        <p class="fake-p">For years, browsers have been read-only. You visit a page, you consume it, you close the tab. Nothing you noticed, flagged, or disagreed with stays.</p>
-        <p class="fake-p">A new generation of extensions is pushing back. <span class="anno-highlight" id="demo-highlight">They let you annotate, erase, and reshape any page — privately, persistently, on your device.</span> No cloud. No accounts.</p>
-        <p class="fake-p">The real shift isn't the tools themselves. It's the premise: the web should be a document you can edit, not a billboard you're asked to politely consume.</p>
+        <!-- Article body — the region the Resizer phase grabs. Wrapped so
+             the outline + handles attach to the headline/byline/paragraphs
+             only, leaving the publisher masthead (ARS TECHNICA) outside. -->
+        <div class="fake-body-content">
+          <div class="fake-h1">Mark it up. Block it out. Make it yours.</div>
+          <div class="fake-byline">April 19, 2026 · 5 min read</div>
+          <p class="fake-p">For years, browsers have been read-only. You visit a page, you consume it, you close the tab. Nothing you noticed, flagged, or disagreed with stays.</p>
+          <p class="fake-p">A new generation of extensions is pushing back. <span class="anno-highlight" id="demo-highlight">They let you annotate, erase, and reshape any page — privately, persistently, on your device.</span> No cloud. No accounts.</p>
+          <p class="fake-p">The real shift isn't the tools themselves. It's the premise: the web should be a document you can edit, not a billboard you're asked to politely consume.</p>
+
+          <!-- Resize handles (hidden unless .anno-resize-hover on .fake-article) -->
+          <div class="resizer-handle rz-left"></div>
+          <div class="resizer-handle rz-right"></div>
+          <div class="resizer-handle rz-top"></div>
+          <div class="resizer-handle rz-bottom"></div>
+          <div class="resizer-handle rz-corner"></div>
+          <div class="resizer-reset" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
+          </div>
+        </div>
 
         <!-- Pink rect annotation (position + size set by demo.js at runtime) -->
         <div class="anno-rect" id="demo-rect"></div>
-
-        <!-- Resize handles (hidden unless .anno-resize-hover on parent) -->
-        <div class="resizer-handle rz-left"></div>
-        <div class="resizer-handle rz-right"></div>
-        <div class="resizer-handle rz-top"></div>
-        <div class="resizer-handle rz-bottom"></div>
-        <div class="resizer-handle rz-corner"></div>
-        <div class="resizer-reset" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
-        </div>
       </div>
 
       <!-- Erased sidebar placeholder -->
