@@ -203,7 +203,7 @@ async function runLoop() {
   sticky.classList.add('visible');
   await wait(400);
   await typeInto(stickyText, 'Follow up on this!');
-  await wait(900);
+  await wait(800);
 
   /* Marker — yellow highlight on a sentence, pink box around the headline,
      freehand scribble over "disagreed" to show the pen tool in action. */
