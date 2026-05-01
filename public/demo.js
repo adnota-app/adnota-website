@@ -32,7 +32,14 @@ const CAPTION_COLOR = {
 
 function setActive(toolId, accent) {
   Object.values(tools).forEach(btn => btn.classList.remove('active'));
-  if (toolId && tools[toolId]) tools[toolId].classList.add('active');
+  if (toolId && tools[toolId]) {
+    const btn = tools[toolId];
+    btn.classList.add('active');
+    const ripple = document.createElement('span');
+    ripple.className = 'tool-ripple';
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    btn.appendChild(ripple);
+  }
   if (accent) dock.setAttribute('data-accent', accent);
   else dock.removeAttribute('data-accent');
 }
