@@ -473,6 +473,22 @@ h1 {
 }
 .anno-rect.visible { opacity: 1; }
 
+.anno-scribble {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  overflow: visible;
+  transition: opacity 0.25s;
+}
+.anno-scribble.visible { opacity: 1; }
+.anno-scribble path {
+  fill: none;
+  stroke: var(--pink);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ── SECTIONS ── */
 section { padding: 100px 48px; }
 
