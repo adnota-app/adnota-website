@@ -10,6 +10,8 @@ const sticky = document.getElementById('demo-sticky');
 const stickyText = document.getElementById('demo-sticky-text');
 const eraseTarget = document.getElementById('demo-erase-target');
 const rect = document.getElementById('demo-rect');
+const scribble = document.getElementById('demo-scribble');
+const scribbleTarget = document.getElementById('demo-scribble-target');
 const caption = document.getElementById('demo-caption');
 
 const tools = {
@@ -74,6 +76,64 @@ function typeInto(el, text, cps = 16) {
   });
 }
 
+/* Lay a freehand pen scribble over the word "disagreed". Sized + positioned
+   off the target span's live bounding box, then a two-pass zigzag path is
+   generated and revealed via stroke-dashoffset so it draws on like a pen.
+   Same scale-aware math as positionRectAroundH1 — works on the CSS-scaled
+   mobile mockup. */
+function positionScribble() {
+  const articleBox = article.getBoundingClientRect();
+  const targetBox = scribbleTarget.getBoundingClientRect();
+  const scale = articleBox.width / article.offsetWidth || 1;
+  const padX = 4;
+  const padY = 3;
+  const w = targetBox.width  / scale + padX * 2;
+  const h = targetBox.height / scale + padY * 2;
+  scribble.style.top    = ((targetBox.top  - articleBox.top)  / scale - padY) + 'px';
+  scribble.style.left   = ((targetBox.left - articleBox.left) / scale - padX) + 'px';
+  scribble.style.width  = w + 'px';
+  scribble.style.height = h + 'px';
+  scribble.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+  /* Two-pass zigzag: forward L→R with peaks alternating top/bottom, then
+     back R→L slightly offset so the strokes overlap and read as a real
+     scribble rather than a single clean wave. */
+  const path = scribble.querySelector('path');
+  const peaks = 7;
+  const margin = 2;
+  const yMid = h / 2;
+  const yTop = h * 0.20;
+  const yBot = h * 0.80;
+  const segW = (w - margin * 2) / peaks;
+  let d = `M ${margin} ${yMid.toFixed(2)}`;
+  for (let i = 0; i < peaks; i++) {
+    const x = margin + segW * (i + 1);
+    const y = i % 2 === 0 ? yTop : yBot;
+    d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  for (let i = peaks - 1; i >= 0; i--) {
+    const x = margin + segW * (i + 0.5);
+    const y = i % 2 === 0 ? yBot * 0.92 : yTop * 1.35;
+    d += ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  d += ` L ${(margin + segW * 0.4).toFixed(2)} ${(yMid + 0.5).toFixed(2)}`;
+  path.setAttribute('d', d);
+
+  const length = path.getTotalLength();
+  path.style.transition = 'none';
+  path.style.strokeDasharray = length;
+  path.style.strokeDashoffset = length;
+  /* Double rAF: first frame commits the reset, second frame starts the
+     transition. Single rAF batches with the style write and the browser
+     skips the animation. */
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      path.style.transition = 'stroke-dashoffset 0.7s ease-out';
+      path.style.strokeDashoffset = 0;
+    });
+  });
+}
+
 /* Wrap the rect around just the h1 text — not the full article width and
    not through the byline below. Called right before fading the rect in, so
    the article's current layout (possibly .expanded) is reflected. */
@@ -102,6 +162,7 @@ function stripState() {
   sticky.classList.remove('visible');
   stickyText.textContent = '';
   rect.classList.remove('visible');
+  scribble.classList.remove('visible');
   highlight.classList.remove('visible');
   setActive(null);
   setCaption(null);
@@ -142,15 +203,19 @@ async function runLoop() {
   await typeInto(stickyText, 'Follow up on this!');
   await wait(900);
 
-  /* Marker — yellow highlight on a sentence, pink box around the headline. */
+  /* Marker — yellow highlight on a sentence, pink box around the headline,
+     freehand scribble over "disagreed" to show the pen tool in action. */
   setActive('marker', 'highlight');
   setCaption('Highlight and Paint', 'highlight');
   await wait(700);
   highlight.classList.add('visible');
-  await wait(800);
+  await wait(700);
   positionRectAroundH1();
   rect.classList.add('visible');
-  await wait(1900);
+  await wait(900);
+  positionScribble();
+  scribble.classList.add('visible');
+  await wait(1100);
 
   /* Linger with all 4 tool results visible so the viewer can absorb the
      final annotated state, then loop — stripState() at the top of runLoop
