@@ -199,7 +199,7 @@ async function runLoop() {
   /* Sticky — drop a note, type the body text. */
   setActive('sticky', 'sticky');
   setCaption('Take notes', 'sticky');
-  await wait(700);
+  await wait(600);
   sticky.classList.add('visible');
   await wait(400);
   await typeInto(stickyText, 'Follow up on this!');
