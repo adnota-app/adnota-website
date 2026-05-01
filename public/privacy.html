@@ -107,7 +107,7 @@
 <main class="doc-page">
 
   <h1>Privacy Policy</h1>
-  <div class="doc-meta">Last updated: April 25, 2026</div>
+  <div class="doc-meta">Last updated: April 30, 2026</div>
 
   <div class="doc-tldr">
     <strong>The short version</strong>
@@ -133,7 +133,7 @@
   <h2>Third-party services</h2>
   <p>Visiting the marketing site causes your browser to load a small number of third-party resources, each subject to that party's own privacy policy:</p>
   <ul>
-    <li><strong>Google Fonts</strong> — fonts are loaded from <code>fonts.googleapis.com</code>. Google may log the request. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</li>
+    <li><strong>Google Fonts</strong> — loaded by this marketing site only. The Chrome extension bundles Inter locally and does not contact Google Fonts. Google may log the request from the site. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</li>
     <li><strong>Featurebase</strong> — the feature-request board on the homepage is an embedded iframe served by Featurebase. If you interact with it (vote, post), your interaction is governed by <a href="https://featurebase.app/privacy">Featurebase's privacy policy</a>.</li>
     <li><strong>Cloudflare</strong> — the site is hosted on Cloudflare Pages. Cloudflare may collect standard request logs. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</li>
   </ul>
@@ -147,9 +147,9 @@
   <h2>Your rights and controls</h2>
   <p>Because we don't collect or store your data on our servers, there is nothing for us to delete, export, or correct on your behalf. You retain full control:</p>
   <ul>
-    <li><strong>To delete your data:</strong> uninstall the extension, or use the wipe controls inside the extension's options page.</li>
-    <li><strong>To export your data:</strong> use the export feature inside the extension (if available in your version) — your data is local, so it's yours to take.</li>
-    <li><strong>To stop the marketing site from loading anything:</strong> simply close the tab.</li>
+    <li><strong>Delete edits in the UI:</strong> use the per-page clear buttons in the popup, or the per-site delete buttons on the "My Edited Sites" page.</li>
+    <li><strong>Wipe everything:</strong> uninstall the extension, or run <code>chrome.storage.local.clear()</code> in the extension's console (right-click the Adnota toolbar icon → <em>Inspect popup</em>).</li>
+    <li><strong>Export everything:</strong> v1 has no built-in export (it's on the roadmap). Your data lives in <code>chrome.storage.local</code> and is yours to take.</li>
   </ul>
 
   <h2>Changes to this policy</h2>
