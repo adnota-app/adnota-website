@@ -5,11 +5,13 @@
 
 const dock = document.getElementById('vellum-dock');
 const browserWrap = document.getElementById('hero-browser');
+const browserBody = browserWrap.querySelector('.browser-body');
 const article = document.querySelector('.hero-mockup .fake-article');
 const highlight = document.getElementById('demo-highlight');
 const sticky = document.getElementById('demo-sticky');
 const stickyText = document.getElementById('demo-sticky-text');
 const eraseTarget = document.getElementById('demo-erase-target');
+const relatedCard = document.getElementById('demo-related-card');
 const rect = document.getElementById('demo-rect');
 const scribble = document.getElementById('demo-scribble');
 const scribbleTarget = document.getElementById('demo-scribble-target');
@@ -173,6 +175,15 @@ function stripState() {
   rect.classList.remove('visible');
   scribble.classList.remove('visible');
   highlight.classList.remove('visible');
+  /* Snap the related card back to its origin instantly. Without disabling
+     the transform transition we'd see a ~850ms slide on every loop restart,
+     overlapping the start of the next eraser phase. */
+  relatedCard.style.transition = 'none';
+  relatedCard.classList.remove('moved', 'anno-resize-hover');
+  relatedCard.style.removeProperty('--move-y');
+  // Force a reflow so the transition: none takes effect before we restore it.
+  void relatedCard.offsetHeight;
+  relatedCard.style.transition = '';
   setActive(null);
   setCaption(null);
 }
@@ -191,17 +202,36 @@ async function runLoop() {
   eraseTarget.classList.remove('anno-erase-hover');
   await wait(900);
 
-  /* Resizer — blue dashed outline + handles appear, article expands while
-     still "selected" so the drag-to-resize gesture reads clearly. */
+  /* Resizer — two beats. First, the article body: dashed outline + handles,
+     then animate-expand to read as drag-to-resize. Second, the related-
+     article card left behind by the eraser: select it, then translate it
+     down to the bottom-right corner of the body to demo the position tool.
+     The destination is measured live so it always lands ~16px clear of
+     the centered dock regardless of the body's current height. */
   setActive('resizer', 'resizer');
-  setCaption('Resize things', 'resizer');
+  setCaption('Resize & reposition', 'resizer');
   await wait(700);
   article.classList.add('anno-resize-hover');
   await wait(600);
   article.classList.add('expanded');
   await wait(1100);
   article.classList.remove('anno-resize-hover');
-  await wait(700);
+  await wait(500);
+
+  relatedCard.classList.add('anno-resize-hover');
+  await wait(450);
+  /* Destination is the bottom-right corner of the body (16px from each
+     edge). The dock sits center-bottom, so the right corner is free —
+     no clearance offset needed. The card's initial top is 24px, so the
+     y-translate is (body_height - card_height - 16) - 24. */
+  const cardInitialTop = 24;
+  const bottomMargin = 16;
+  const moveY = browserBody.offsetHeight - relatedCard.offsetHeight - bottomMargin - cardInitialTop;
+  relatedCard.style.setProperty('--move-y', `${moveY}px`);
+  relatedCard.classList.add('moved');
+  await wait(950);
+  relatedCard.classList.remove('anno-resize-hover');
+  await wait(400);
 
   /* Sticky — drop a note, type the body text. */
   setActive('sticky', 'sticky');
