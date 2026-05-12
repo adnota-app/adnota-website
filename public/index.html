@@ -141,9 +141,18 @@
         </svg>
       </div>
 
-      <!-- Erased sidebar placeholder -->
+      <!-- Related-article card (top ~1/3 of sidebar). Stays after the ad
+           is erased; the Resizer phase picks it up and moves it to the
+           bottom-right corner to demo the position-drag capability. -->
+      <div class="anno-related-card" id="demo-related-card">
+        <div class="related-eyebrow">RELATED</div>
+        <div class="related-title">Works on ChatGPT</div>
+        <div class="related-meta">4 min read · Apr 2026</div>
+      </div>
+
+      <!-- Erased ad placeholder (bottom ~2/3 of sidebar) -->
       <div class="anno-erase-target" id="demo-erase-target">
-        <div class="anno-erase-badge">180 × 312</div>
+        <div class="anno-erase-badge">180 × 200</div>
         <div>
           <div style="font-size:14px;margin-bottom:6px;">📢</div>
           <div>Advertisement<br><span style="font-size:9px;color:#bbb">300×250</span></div>
@@ -324,7 +333,7 @@
             <h3>Resizer</h3>
           </div>
         </div>
-        <p>Drag handles to resize any element — sidebars too wide, images too small, columns too narrow. Persists as injected CSS, domain-wide by default, surviving React and Vue re-renders.</p>
+        <p>Resize, move, or restyle elements. Sidebars too wide, panels in the wrong place, text too small — drag handles to resize, drag-and-drop to reposition, recolor with the EyeDropper, or scale text with Aa± chips.</p>
         <!-- <div class="feature-tag">Shortcut: <kbd style="font-family:var(--font-mono);font-size:10px">R</kbd></div>
         <div class="feature-tag" style="margin-left:8px;font-size:11px;font-family:var(--font-mono);color:var(--blue)">domain-wide</div> -->
         <div class="feature-visual">
