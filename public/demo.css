@@ -266,19 +266,3 @@
 .hero-mockup #vellum-dock[data-accent="resizer"]   .vellum-dock-back { background: rgba(59, 130, 246, 0.35); color: #93c5fd; }
 .hero-mockup #vellum-dock[data-accent="resizer"]   .vellum-dock-back:hover { background: rgba(59, 130, 246, 0.55); }
 
-/* ── Drag handle (braille-glyph dots) ──────────────────────────────────── */
-.hero-mockup .vellum-toolbar-drag {
-  color: #525264;
-  font-size: 18px;
-  letter-spacing: -1.5px;
-  font-weight: bold;
-  cursor: grab;
-  margin-right: 8px;
-  margin-bottom: 5px;
-  user-select: none;
-  padding: 0 4px;
-}
-
-.hero-mockup .vellum-toolbar-drag:active {
-  cursor: grabbing;
-}
