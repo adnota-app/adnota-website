@@ -1273,6 +1273,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .hero-badge-tail { display: none; }
   nav { padding: 0 20px; }
   .nav-cluster { gap: 12px; }
   .nav-toggle { display: block; }
