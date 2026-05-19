@@ -107,7 +107,7 @@
 <main class="doc-page">
 
   <h1>Privacy Policy</h1>
-  <div class="doc-meta">Last updated: April 30, 2026</div>
+  <div class="doc-meta">Last updated: May 18, 2026</div>
 
   <div class="doc-tldr">
     <strong>The short version</strong>
@@ -147,9 +147,10 @@
   <h2>Your rights and controls</h2>
   <p>Because we don't collect or store your data on our servers, there is nothing for us to delete, export, or correct on your behalf. You retain full control:</p>
   <ul>
-    <li><strong>Delete edits in the UI:</strong> use the per-page clear buttons in the popup, or the per-site delete buttons on the "My Edited Sites" page.</li>
+    <li><strong>Delete edits in the UI:</strong> use the per-page clear buttons in the popup, or the per-site delete buttons on the <em>Home</em> page.</li>
     <li><strong>Wipe everything:</strong> uninstall the extension, or run <code>chrome.storage.local.clear()</code> in the extension's console (right-click the Adnota toolbar icon → <em>Inspect popup</em>).</li>
-    <li><strong>Export everything:</strong> v1 has no built-in export (it's on the roadmap). Your data lives in <code>chrome.storage.local</code> and is yours to take.</li>
+    <li><strong>Export your data:</strong> open <strong>Import / Export</strong> from the <em>Home</em> page. "Copy to clipboard" puts a complete JSON snapshot of your <code>chrome.storage.local</code> onto your system clipboard. Nothing is uploaded — but be aware that any text on your clipboard is readable by other apps on your device while it's there.</li>
+    <li><strong>Import data:</strong> paste a previously-exported JSON snapshot into the same modal and click "Import (replace all)". This wipes your existing storage and writes the imported payload, so it cannot be undone — copy the current state first if you want a fallback.</li>
   </ul>
 
   <h2>Changes to this policy</h2>
