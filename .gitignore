@@ -12,3 +12,9 @@
 
 # Logs
 *.log
+
+# Local scratch / not for the public repo
+.git.bak/
+todo.md
+random/
+*.zip
